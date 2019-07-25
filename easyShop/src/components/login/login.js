@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
+import {inject,observer} from 'mobx-react'
 import './login.scss'
+
+@inject('login')
+@observer
 class login extends Component {
+    state() {
+        // user:null
+    }
     loginBtn() {
-        console.log(1)
+        console.log(this.props)
     }
     render() {
         return (
@@ -12,7 +19,7 @@ class login extends Component {
                 </div>
                 <div className='login_main'>
                     <div className='login_input'>
-                        <input type="text" placeholder='请输入用户名' />
+                        <input type="text" placeholder='请输入用户名'  />
                     </div>
                     <div className='login_input'>
                         <input type="password" placeholder='请输入密码' />
