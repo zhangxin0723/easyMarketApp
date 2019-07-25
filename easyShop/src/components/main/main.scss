@@ -18,31 +18,44 @@ html,body,#root,.home{
     }
     .home_footer{
         width: 100%;
-        height: .88rem;
+        height: 1rem;
         border-top: 1px solid #eee;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;
         padding: 0;
-        dl{
+        box-shadow: 0 -3px 10px 0 rgba(0,0,0,.2);
+        a{
             flex:1;
-            text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            dt{
-                height: 60%;
-                width: 100%;
-                i{
-                    font-size: .3rem;
+            text-decoration: none;
+            color: #000;
+            dl{
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                dt{
+                    height: 60%;
+                    width: 100%;
+                    i{
+                        font-size: .4rem;
+                    }
+                }
+                dd{
+                    width: 100%;
+                    height: 40%;
+                    font-size: .2rem;
+                    margin-top: .1rem;
                 }
             }
-            dd{
-                width: 100%;
-                height: 40%;
-                font-size: .2rem;
+            &.footer_active{
+                color:#359DF4
             }
         }
     }

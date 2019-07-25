@@ -7,7 +7,7 @@ import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 //引入mobx
-import {Provider} from 'mobx-react'
+import { Provider } from 'mobx-react'
 import store from './store/index'
 //解决300ms延迟问题
 var FastClick = require('fastclick');
@@ -19,7 +19,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
-                <Redirect to="/main"></Redirect>
+                <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
     </Provider>
