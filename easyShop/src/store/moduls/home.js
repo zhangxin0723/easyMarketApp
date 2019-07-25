@@ -6,8 +6,12 @@ export default class Home {
     //@action 修饰方法
     @action getHomeData = async () => {
         const data=await getHome()
-        console.log(data)
         this.homeData = data.data
-        return this.homeData
     }
+    // @action getHomeData(){
+    //     getHome().then(res=>{
+    //         console.log(res)
+    //         this.homeData=res.data
+    //     })
+    // }
 }
