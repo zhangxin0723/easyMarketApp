@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './login.scss'
 class login extends Component {
+    loginBtn() {
+        console.log(1)
+    }
     render() {
         return (
             <div className='wrap'>
@@ -9,13 +12,13 @@ class login extends Component {
                 </div>
                 <div className='login_main'>
                     <div className='login_input'>
-                        <input type="text"/>
+                        <input type="text" placeholder='请输入用户名' />
                     </div>
                     <div className='login_input'>
-                        <input type="password"/>
+                        <input type="password" placeholder='请输入密码' />
                     </div>
                     <div className='login_button'>
-                        <span>登录</span>
+                        <span onClick={() => this.loginBtn()}>登录</span>
                     </div>
                 </div>
             </div>
