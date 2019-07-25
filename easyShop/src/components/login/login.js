@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 import {inject,observer} from 'mobx-react'
 import './login.scss'
-
 @inject('login')
 @observer
 class login extends Component {
-    state() {
-        // user:null
+    constructor() {
+        super()
+        this.state = {
+            user:'',
+            pwd:''
+        }
+        this.getuser = React.createRef()
+        this.getpwd = React.createRef()
     }
     loginBtn() {
-        console.log(this.props)
+        let mobile = this.getuser.current.value
+        let password = this.getpwd.current.value
+        this.props.login.getData({mobile,password})
+    }
+    componentDidUpdate() {
+        if(this.props.login.data === 0 ) {
+            this.props.history.push('/main')
+        }
     }
     render() {
         return (
@@ -19,13 +31,16 @@ class login extends Component {
                 </div>
                 <div className='login_main'>
                     <div className='login_input'>
-                        <input type="text" placeholder='请输入用户名'  />
+                        <input type="text" placeholder='请输入用户名' ref={this.getuser}  />
                     </div>
                     <div className='login_input'>
-                        <input type="password" placeholder='请输入密码' />
+                        <input type="password" placeholder='请输入密码' ref={this.getpwd} />
                     </div>
                     <div className='login_button'>
                         <span onClick={() => this.loginBtn()}>登录</span>
+                        {
+                           this.props.login.data
+                        }
                     </div>
                 </div>
             </div>
