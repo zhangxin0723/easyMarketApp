@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {getToken} from './index'
-import {message} from 'antd';
 // create an axios instance
 const service = axios.create({
   baseURL:'http://127.0.0.1:8888/',
@@ -31,7 +30,7 @@ service.interceptors.response.use(
   error => {
     return Promise.reject(error)
     // return Promise.reject(error)
-    message.error(error.message);// eslint-disable-line
+    alert(error.message);// eslint-disable-line
   }
 )
 
