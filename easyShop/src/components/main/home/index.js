@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 import './index.scss'
 
-export default class Home extends Component {
+@inject('home')
+@observer
+
+class Home extends Component {
+    componentDidMount() {
+        this.props.home.getHomeData()
+    }
     render() {
+        console.log(this.props)
         return (
             <div className="home">
                 <div className="home_banner">
@@ -13,3 +21,4 @@ export default class Home extends Component {
         )
     }
 }
+export default Home

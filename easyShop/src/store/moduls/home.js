@@ -1,9 +1,13 @@
-import { observable , action} from 'mobx'
+import { observable, action } from 'mobx'
+import { getHome } from '../../services/home'
 export default class Home {
     //@observable 修饰符
-    @observable count = 100;
+    @observable homeData = null;
     //@action 修饰方法
-    @action changeCount(type) {
-        type === '+' ? this.count++ : this.count--;
+    @action getHomeData = async () => {
+        const data=await getHome()
+        console.log(data)
+        this.homeData = data.data
+        return this.homeData
     }
 }
