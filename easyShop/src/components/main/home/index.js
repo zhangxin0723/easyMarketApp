@@ -47,12 +47,12 @@ class Home extends Component {
                 <nav className="nav_list">
                     {
                         this.props.home.homeData && this.props.home.homeData.channel.map(item => {
-                            return (<dl key={item.id}>
+                            return (<a href={`/categorys/${item.id}`} key={item.id}><dl>
                                 <dt>
                                     <img src={item.icon_url} />
                                 </dt>
                                 <dd>{item.name}</dd>
-                            </dl>)
+                            </dl></a>)
                         })
                     }
                 </nav>

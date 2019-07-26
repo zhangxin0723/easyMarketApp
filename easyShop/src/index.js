@@ -6,9 +6,13 @@ import Login from './components/login/login'
 import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
+//首页详情
+import Categorys from './components/main/Home/categorys.js'
+
 //引入mobx
 import { Provider } from 'mobx-react'
 import store from './store/index'
+import 'antd-mobile/dist/antd-mobile.css'
 //解决300ms延迟问题
 var FastClick = require('fastclick');
 FastClick.attach(document.body);
@@ -19,6 +23,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
+                <Route path='/categorys/:id' component={Categorys}></Route>
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
