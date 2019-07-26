@@ -15,15 +15,15 @@ import Mine from './Mine'
 export default class Main extends Component {
     render() {
         return (
-            <div className='home'>
-                <main className="home_main">
+            <div className='main'>
+                <main className="main_main">
                     <Route path='/main/home' component={Home}></Route>
                     <Route path='/main/topic' component={Topic}></Route>
                     <Route path='/main/catelog' component={Catelog}></Route>
                     <Route path='/main/cart' component={Cart}></Route>
                     <Route path='/main/mine' component={Mine}></Route>
                 </main>
-                <footer className="home_footer">
+                <footer className="main_footer">
                     <NavLink to='/main/home' activeClassName="footer_active">
                         <dl>
                             <dt><i className="iconfont icon-shouye"></i></dt>
