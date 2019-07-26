@@ -9,6 +9,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     .topic_cont {
         img {
             width: 100%;
@@ -19,6 +20,28 @@
             padding-top: .2rem;
             font-size: .3rem;
             line-height: .4rem;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height: .7rem;
+        }
+        .topice_center {
+            padding: .1rem .2rem;
+            font-size: .26rem;
+            text-align: center;
+            overflow: hidden;
+            color: gray;
+            height: .4rem;
+        }
+        .topic_price {
+            padding: .1rem;
+            padding-bottom: .2rem;
+            font-size: .28rem;
+            text-align: center;
+            color: red;
+            line-height: .4rem;
+            height: .7rem;
         }
     }
 }

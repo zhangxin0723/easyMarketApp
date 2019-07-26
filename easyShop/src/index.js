@@ -5,7 +5,8 @@ import Main from './components/main/main'
 import Login from './components/login/login'
 import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-
+//专题详情
+import topicDetail from './components/main/Topic/topicDetail'
 //引入mobx
 import { Provider } from 'mobx-react'
 import store from './store/index'
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Switch>
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
+                <Route path='/topicDetail/:id' component={topicDetail} />
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>

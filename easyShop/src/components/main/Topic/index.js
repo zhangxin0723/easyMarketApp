@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
 import './topic.scss'
-export default class Topic extends Component {
+import { inject , observer} from 'mobx-react'
+@inject('topic')
+@observer
+class Topic extends Component {
+    componentDidMount() {
+        this.props.topic.getTopicData()
+        this.props.topic.getTopicDetail()
+    }
+    topicDetail(id) {
+        this.props.topic.getTopicDetail(id)
+        this.props.history.push({pathname:`/topicDetail/?id=${id}`})
+    }
     render() {
+        console.log(this.props.topic.mytopicDetail)
         return (
             <div className='topic_wrap'>
-                {/* <div className='topic_cont'>
-                    <img src="https://yanxuan.nosdn.127.net/14943267735961674.jpg" alt=""/>
-                    <div className='topice_title'>关爱他成长的每一个足迹</div>
-                    <div className='topice_center'>专业运动品牌同厂，毛毛虫鞋买二送一</div>
-                    <div className='topic_price'>
-                        '0''元起'
-                    </div>
-                </div> */}
+                {
+                    this.props.topic.mytopic.data && this.props.topic.mytopic.data.map(item => {
+                            return  <div className='topic_cont' key={item.id} 
+                                onClick={() => this.topicDetail(item.id)}
+                            >
+                                        <img src={item.scene_pic_url} alt=""/>
+                                        <div className='topice_title'>{item.title}</div>
+                                        <div className='topice_center'>{item.subtitle}</div>
+                                           <div className='topic_price'>
+                                            {item.price_info}元起
+                                        </div>
+                                    </div> 
+                    })
+                }
             </div>
         )
     }
 }
+export default Topic
