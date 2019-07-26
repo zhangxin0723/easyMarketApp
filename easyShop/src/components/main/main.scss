@@ -15,6 +15,7 @@ html,body,#root,.main{
     flex-direction: column;
     .main_main{
         flex:1;
+        overflow: hidden;
     }
     .main_footer{
         width: 100%;
