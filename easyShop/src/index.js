@@ -10,6 +10,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Categorys from './components/main/Home/categorys.js'
 //首页商家详情
 import BrandDetail from './components/main/Home/brandDetail'
+//购物车详情
+import Goods from './components/main/detail/goods'
 
 //引入mobx
 import { Provider } from 'mobx-react'
@@ -27,6 +29,7 @@ ReactDOM.render(
                 <Route path='/login' component={Login} />
                 <Route path='/categorys/:id' component={Categorys}></Route>
                 <Route path='/brandDetail/:id' component={BrandDetail}></Route>
+                <Route path='/goods/:id' component={Goods}></Route>
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>

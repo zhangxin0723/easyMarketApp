@@ -75,7 +75,7 @@ class Home extends Component {
                     <div className='newGoodsWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.newGoodsList.map(item => {
-                                return (<a className='newGoodsItem' key={item.id}>
+                                return (<a className='newGoodsItem'  href={`/goods/${item.id}`} key={item.id}>
                                     <img src={item.list_pic_url} />
                                     <div className='newGoodsName'>{item.name}</div>
                                     <div className='newGoodsPrice'>￥{item.retail_price}</div>
@@ -89,7 +89,7 @@ class Home extends Component {
                     <div className='hotGoodsWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.hotGoodsList.map(item => {
-                                return (<a className='hotGoodsItem' key={item.id}>
+                                return (<a className='hotGoodsItem' key={item.id} href={`/goods/${item.id}`}>
                                     <img src={item.list_pic_url} />
                                     <div className='hotGoodsInfos'>
                                         <div className='hotGoodsName'>{item.name}</div>
@@ -130,7 +130,7 @@ class Home extends Component {
                                 {
                                     item.goodsList.map(val => {
                                         return (
-                                            <a tag='div' href='#' key={val.id}>
+                                            <a tag='div' href={`/goods/${item.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
                                                     <img src={val.list_pic_url} />
                                                 </div>

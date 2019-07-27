@@ -1,0 +1,103 @@
+.App{
+    height: 100px;
+    .noTabPageContent {
+        padding-top: 1.04rem;
+        min-height: 100%;
+        .goodsPage {
+            padding-bottom: 1rem;
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1rem;
+                background: white;
+                box-shadow: 0 0.04rem 0.08rem 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10;
+                >div {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .title {
+                    flex: 1 1;
+                    font-size: .32rem;
+                }
+                .iconfont{
+                    font-family: "iconfont" !important;
+                    font-size: 0.4rem;
+                    font-style: normal;
+                    &:befor{
+                        content: "\e627";
+                    }
+                }
+                .left,.right {
+                    width: .6rem;
+                }
+            }
+        }  
+    }
+}
+.goodsPageDo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: .98rem;
+    background: white;
+    box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    .isLike {
+        width: 20%;
+        height: 100%;
+        line-height: .98rem;
+        font-size: .6rem;
+        text-align: center;
+        font-weight: bolder;
+    }
+    .cartNum {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #2196f3;
+        .iconfont {
+            font-size: .45rem;
+            position: relative;
+            font-family: "iconfont" !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            // &:before {
+            //     content: "\ec8e";
+            // }
+            span {
+                position: absolute;
+                font-size: .32rem;
+                right: -.2rem;
+                top: -.1rem;
+                color: red;
+                font-weight: bolder;
+            }
+        }
+    }
+    .addCart,  .payGoods {
+        width: 30%;
+        height: 100%;
+        line-height: .98rem;
+        text-align: center;
+        font-size: .3rem;
+        color: white;
+    }
+    .addCart{
+        background: linear-gradient(90deg, #ff9500, #ff5e3a);
+    }
+    .payGoods{
+        background: linear-gradient(90deg, #1d62f0, #19d5fd);
+    }
+}
