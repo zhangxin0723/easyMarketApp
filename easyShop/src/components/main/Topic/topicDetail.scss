@@ -25,11 +25,14 @@ a {
         text-align: center;
         line-height: .88rem;
         padding:  0 .3rem;
-        a {
-            text-decoration: none;
-            color: black;
-            i {
-                font-size: .28rem;
+        .header_left {
+            width: .6rem;
+            a {
+                text-decoration: none;
+                color: black;
+                i {
+                    font-size: .28rem;
+                }
             }
         }
         span {

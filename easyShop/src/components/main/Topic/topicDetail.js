@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
 import '../../../fonts/iconfont.css'
 import './topicDetail.scss'
+import { inject , observer} from 'mobx-react'
+@inject('topic')
+@observer
 class TopicDetail extends Component {
+    goback() {
+        this.props.history.goBack()
+    }
+    componentDidMount() {
+        let id = this.props.match.params.id.slice(1).split('=')[1]
+        this.props.topic.getCommentList(id,1)
+    }
     render() {
         return (
             <div className='topicDetail_wrap'>
                 <header className="header">
-                    <a href="javascript:;">
-                        <i className='iconfont icon-xiangzuo'></i>
-                    </a>
-                    <span>关爱他成长的每一个足迹</span>
+                    <div className='header_left' onClick={() => {this.goback()}}> 
+                        <a href="javascript:;">
+                            <i className='iconfont icon-xiangzuo'></i>
+                        </a>
+                    </div>
+                    <span>{this.props.topic.mytopicDetail.title}</span>
                 </header>
                 <section className="main">
                      <div className='main_img'>
@@ -26,37 +38,18 @@ class TopicDetail extends Component {
                              <span>精选留言</span>
                              <i className='iconfont icon-24'></i>
                          </div>
-                         <div className='main_wrap_comment_cont'>
-                             <div className='userInfo'>
-                                 <div>匿名用户</div>
-                                 <div>2017-05-15 10:06:01</div>
-                             </div>
-                             <div className='user_cont'>是记忆棉 很满意</div>
-                             <div className='user_parting'></div>
-                         </div>
-                         <div className='main_wrap_comment_cont'>
-                             <div className='userInfo'>
-                                 <div>匿名用户</div>
-                                 <div>2017-05-15 10:06:01</div>
-                             </div>
-                             <div className='user_cont'>是记忆棉 很满意</div>
-                             <div className='user_parting'></div>
-                         </div>
-                         <div className='main_wrap_comment_cont'>
-                             <div className='userInfo'>
-                                 <div>匿名用户</div>
-                                 <div>2017-05-15 10:06:01</div>
-                             </div>
-                             <div className='user_cont'>是记忆棉 很满意</div>
-                             <div className='user_parting'></div>
-                         </div>
-                         <div className='main_wrap_comment_cont'>
-                             <div className='userInfo'>
-                                 <div>匿名用户</div>
-                                 <div>2017-05-15 10:06:01</div>
-                             </div>
-                             <div className='user_cont'>是记忆棉 很满意</div>
-                         </div>
+                         {
+                             this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.map(item => {
+                                 return <div className='main_wrap_comment_cont' key={item.id}>
+                                            <div className='userInfo'>
+                                                <div>匿名用户</div>
+                                                <div>{item.add_time}</div>
+                                            </div>
+                                            <div className='user_cont'>{item.content}</div>
+                                            <div className='user_parting'></div>
+                                        </div>
+                             })
+                         }
                          <a href="" className='moreComment'>查看更多评论</a>
                      </div>
                      <div className='main_recommend'>

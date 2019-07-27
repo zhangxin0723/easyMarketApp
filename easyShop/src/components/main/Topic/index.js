@@ -9,11 +9,11 @@ class Topic extends Component {
         this.props.topic.getTopicDetail()
     }
     topicDetail(id) {
+        //根据专题Id获取专题详情
         this.props.topic.getTopicDetail(id)
         this.props.history.push({pathname:`/topicDetail/?id=${id}`})
     }
     render() {
-        console.log(this.props.topic.mytopicDetail)
         return (
             <div className='topic_wrap'>
                 {
