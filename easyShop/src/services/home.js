@@ -7,3 +7,7 @@ export function getHome() {
 export function getCatelog(params){
     return request.get('/goods/list',{params})
 }
+//获取分类 ID 分类 Nav 数据
+export function getNavData(params){
+    return request.get('/goods/category',{params})
+}

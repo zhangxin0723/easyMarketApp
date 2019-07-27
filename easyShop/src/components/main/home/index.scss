@@ -379,10 +379,11 @@
             height: auto;
             z-index: 10;
             background: #fff;
+            overflow: hidden;
         }
         .categoryDetail {
             padding: .2rem 0;
-            margin-top: .64rem;
+            margin-top: 1.64rem;
              > div {
                 height: .6rem;
                 line-height: .6rem;
