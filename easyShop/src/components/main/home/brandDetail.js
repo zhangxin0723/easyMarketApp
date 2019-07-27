@@ -8,25 +8,45 @@ class BrandDetail extends Component {
     componentDidMount() {
         let id = this.props.match.params.id;
         console.log(this.props)
-        this.props.home.getBrandDetail({id})
+        this.props.home.getBrandDetail({ id })
+        this.props.home.getBrandDetailList({ brandId: id })
     }
     render() {
+        if (!this.props.home.brandData) {
+            return null
+        }
+        if (!this.props.home.brandDetailData) {
+            return null
+        }
+        let { name, simple_desc, app_list_pic_url } = this.props.home.brandData
+        let { data } = this.props.home.brandDetailData;
+        console.log(data)
         return (
             <div className='App_brandDetail'>
                 <div className='noTabPageContent'>
                     <div className='header'>
                         <div className='left'><i className='iconfont icon-angle-left'></i></div>
-                        <div className='title'>奇趣分类</div>
+                        <div className='title'>{name}</div>
                         <div className='right'></div>
                     </div>
                     <div className='brandDetail'>
-                        <img src='http://yanxuan.nosdn.127.net/658f09b7ec522d31742b47b914d64338.png' />
-                        <div className='breadDesc'>严选寻访Calvin Klein品牌的制造商，深入世界领带第一生产地，设计与品质并重，致力于给消费者带来优质典雅的服饰用品。</div>
+                        <img src={app_list_pic_url} />
+                        <div className='breadDesc'>{simple_desc}</div>
                     </div>
                     <div className='brandGoodsList'>
                         <div className='goodsListWrap'>
                             <div className='goodsList'>
-
+                                {
+                                    data.length !== 0 ? data.map(item => {
+                                        return (<a className='goodsItem' key={item.id}>
+                                            <div className='goodsItemImg'>
+                                                <img src={item.list_pic_url} />
+                                            </div>
+                                            <div className='goodsItemName'>{item.name}</div>
+                                            <div className='goodsItemPrice'>￥{item.retail_price}元</div>
+                                        </a>)
+                                    }) : null
+                                }
                             </div>
                         </div>
                     </div>

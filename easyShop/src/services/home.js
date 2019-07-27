@@ -15,3 +15,7 @@ export function getNavData(params) {
 export function getBrand(params) {
     return request.get('/brand/detail', {params})
 }
+//根据分类 Id 或者制造商 Id 获取商品
+export function getBrandData(params){
+    return request.get('/goods/list',{params})
+}

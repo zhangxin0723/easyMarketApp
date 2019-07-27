@@ -127,6 +127,7 @@
                     justify-content: center;
                     align-items: center;
                     font-size: .3rem;
+                    color: darkred;
                 }
             }
         }
@@ -474,6 +475,7 @@
 }
 .App_brandDetail{
     height: 100%;
+    overflow: scroll;
     .noTabPageContent {
         padding-top: 1.04rem;
         min-height: 100%;

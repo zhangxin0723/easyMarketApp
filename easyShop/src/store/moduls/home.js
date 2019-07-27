@@ -1,10 +1,13 @@
 import { observable, action } from 'mobx'
-import { getHome, getCatelog, getNavData, getBrand } from '../../services/home'
+import { getHome, getCatelog, getNavData, getBrand,getBrandData } from '../../services/home'
+import { get } from 'https';
 export default class Home {
     //@observable 修饰符
     @observable homeData = null;
     @observable catalog = null;
     @observable navData = null;
+    @observable brandData = null;
+    @observable brandDetailData = null;
     //@action 修饰方法
     @action getHomeData = async () => {
         const data = await getHome()
@@ -23,6 +26,12 @@ export default class Home {
     //根据制造商 ID 获取制造商详情
     @action getBrandDetail = async (params) => {
         const data = await getBrand(params)
-        console.log(data)
+        console.log(data.data.brand)
+        this.brandData=data.data.brand
+    }
+    //根据分类 Id 或者制造商 Id 获取商品
+    @action getBrandDetailList=async (params) => {
+        const data = await getBrandData(params)
+        this.brandDetailData=data.data
     }
 }
