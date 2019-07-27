@@ -61,7 +61,7 @@ class Home extends Component {
                     <div className='brandWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.brandList.map(item => {
-                                return (<a className='brandItem' key={item.id}>
+                                return (<a className='brandItem' href={`/brandDetail/${item.id}`} key={item.id}>
                                     <div className='brandItemName'>{item.name}</div>
                                     <div className='brandItemMinPrice'>{item.floor_price}元起</div>
                                     <img src={item.new_pic_url} />

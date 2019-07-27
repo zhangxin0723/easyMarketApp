@@ -6,8 +6,10 @@ import Login from './components/login/login'
 import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-//首页详情
+//首页分类详情
 import Categorys from './components/main/Home/categorys.js'
+//首页商家详情
+import BrandDetail from './components/main/Home/brandDetail'
 
 //引入mobx
 import { Provider } from 'mobx-react'
@@ -24,6 +26,7 @@ ReactDOM.render(
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
                 <Route path='/categorys/:id' component={Categorys}></Route>
+                <Route path='/brandDetail/:id' component={BrandDetail}></Route>
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
