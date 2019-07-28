@@ -5,14 +5,29 @@ import { inject , observer} from 'mobx-react'
 @inject('topic')
 @observer
 class TopicDetail extends Component {
+    state = {
+        page:1,
+        size:5
+    }
     goback() {
         this.props.history.goBack()
     }
     componentDidMount() {
         let id = this.props.match.params.id.slice(1).split('=')[1]
-        this.props.topic.getCommentList(id,1)
+        let obj = {
+            valueId:id,
+            typeId:1,
+            page:this.state.page,
+            size:this.state.size
+        }
+        this.props.topic.getCommentList(obj)
+    }
+    //点击跳留言
+    commentWrite() {
+        this.props.history.push('/commentWrite')
     }
     render() {
+        let id = this.props.match.params.id.slice(1).split('=')[1]
         return (
             <div className='topicDetail_wrap'>
                 <header className="header">
@@ -36,7 +51,9 @@ class TopicDetail extends Component {
                      <div className='main_comment'>
                          <div className='main_wrap_comment'>
                              <span>精选留言</span>
-                             <i className='iconfont icon-24'></i>
+                             <div className='iconfonts' onClick={() => this.commentWrite()}>
+                                <i className='iconfont icon-24'></i>
+                             </div>
                          </div>
                          {
                              this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.map(item => {
@@ -50,7 +67,7 @@ class TopicDetail extends Component {
                                         </div>
                              })
                          }
-                         <a href="" className='moreComment'>查看更多评论</a>
+                        <a href={`/comment/${id}`} className='moreComment'>查看更多评论</a>
                      </div>
                      <div className='main_recommend'>
                          <div className='crecomment_special'>推荐专题</div>

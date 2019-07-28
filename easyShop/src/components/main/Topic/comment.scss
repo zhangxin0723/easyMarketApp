@@ -8,15 +8,11 @@ html,body,#root {
     width: 100%;
     height: 100%;
 }
-a {
-    text-decoration: none;
-}
-.topicDetail_wrap {
+.comment_wrap {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #F5F5F9;
     .header {
         width: 100%;
         height: .88rem;
@@ -25,6 +21,7 @@ a {
         text-align: center;
         line-height: .88rem;
         padding:  0 .3rem;
+        box-shadow: 0 0.04rem 0.08rem 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
         .header_left {
             width: .6rem;
             a {
@@ -43,36 +40,7 @@ a {
     .main {
         flex: 1;
         overflow-y: auto;
-        .main_img {
-            img {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-        }
-        .main_comment {
-            width: 100%;
-            padding: 0 .2rem;
-            background: #fff;
-            .main_wrap_comment {
-                width: 100%;
-                height: .8rem;
-                text-align: center;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-bottom: 1px solid #BFBFBF;
-                .iconfonts {
-                    width: .8rem;
-                    height: .8rem;
-                    text-align: center;
-                    line-height: .8rem;
-                    i {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
+        padding: 0 .2rem;
             .main_wrap_comment_cont {
                 width: 100%;
                 .userInfo {
@@ -110,29 +78,5 @@ a {
                     outline: none;
                 }
             }
-        }
-        .main_recommend {
-            margin-top: .2rem;
-            padding: 0 .2rem;
-            .crecomment_special {
-                line-height: .8rem;
-                text-align: center;
-            }
-            .crecomment_special_img {
-                background: white;
-                padding: .2rem .2rem 0 .2rem;
-                margin-bottom: .2rem;
-                display: block;
-                img {
-                    width: 100%;
-                    height: 4rem;
-                }
-                div {
-                    line-height: 1rem;
-                    color: gray;
-                    font-size: .28rem;
-                }
-            }
-        }
     }
 }

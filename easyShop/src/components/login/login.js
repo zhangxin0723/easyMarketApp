@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {inject,observer} from 'mobx-react'
+import {getToken} from '../../utils/index'
 import './login.scss'
 @inject('login')
 @observer
@@ -17,10 +18,8 @@ class login extends Component {
         let mobile = this.getuser.current.value
         let password = this.getpwd.current.value
         this.props.login.getData({mobile,password})
-    }
-    componentDidUpdate() {
-        if(this.props.login.data === 0 ) {
-            this.props.history.push('/main')
+        if(getToken()) {
+            this.props.history.push('/main/home')
         }
     }
     render() {

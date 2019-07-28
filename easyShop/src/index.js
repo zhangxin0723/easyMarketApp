@@ -7,6 +7,10 @@ import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 //专题详情
 import topicDetail from './components/main/Topic/topicDetail'
+//全部评论
+import commnet from './components/main/Topic/comment'
+//点击跳留言
+import commentWrite from './components/main/Topic/topicCommentWrite'
 //引入mobx
 import { Provider } from 'mobx-react'
 import store from './store/index'
@@ -21,6 +25,8 @@ ReactDOM.render(
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
                 <Route path='/topicDetail/:id' component={topicDetail} />
+                <Route path='/comment/:id' component={commnet} />
+                <Route path='/commentWrite' component={commentWrite} />
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
