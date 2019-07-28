@@ -1,5 +1,5 @@
 .App{
-    height: 100px;
+    height: 100%;
     .noTabPageContent {
         padding-top: 1.04rem;
         min-height: 100%;
@@ -99,5 +99,161 @@
     }
     .payGoods{
         background: linear-gradient(90deg, #1d62f0, #19d5fd);
+    }
+}
+.banner{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 7rem;
+    box-sizing: border-box;
+    visibility: visible;
+    .swiper-container{
+        width: 100%;
+        height: 100%;
+        .swiper-wrapper{
+            width: 100%;
+            height: 100%;
+            .swiper-slide{
+                width: 100%;
+                height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+ .serviceList {
+    height: .8rem;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+        flex: 1 1;
+        color: #666;
+        font-size: .24rem;
+        text-align: center;
+        span {
+            color: red;
+            margin-right: .15rem;
+            font-size: .3rem;
+        }
+    }
+}
+.goodsMsgWrap {
+    padding: .4rem;
+    background: white;
+    .goodsNameTitle {
+        font-size: .4rem;
+        text-align: center;
+        padding-bottom: .2rem;
+    }
+    .goodsNameSubTitle {
+        font-size: .3rem;
+        color: #444;
+        text-align: center;
+        padding-bottom: .1rem;
+    }
+    .goodsPriceTitle {
+        font-size: .4rem;
+        color: red;
+        text-align: center;
+        line-height: 1rem;
+    }
+}
+.goodsSize {
+    margin-top: .02rem;
+    height: 1rem;
+    padding: 0 .4rem;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div{
+        &:nth-child(1) {
+            flex: 1 1;
+            text-align: left;
+            color: #2196f3;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        &:nth-child(2) &:nth-child(3) {
+            width: auto;
+            padding: 0 .1rem;
+            text-align: right;
+        }
+        &:nth-child(2) {
+            color: red;
+            font-weight: bolder;
+            margin-right: .1rem;
+        }
+    }
+}
+.goodsAttribute {
+    margin-top: .2rem;
+    padding: .4rem;
+    background: white;
+    .goodsAttributeLine {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #2196f3;
+        padding: .1rem 0;
+        &:before {
+            content: '';
+            width: .4rem;
+            height: 1px;
+            background: #2196f3;
+            margin: 0 .2rem;
+        }
+        &:after {
+            content: '';
+            width: .4rem;
+            height: 1px;
+            background: #2196f3;
+            margin: 0 .2rem;
+        }
+    }
+    .goodsAttributeList{
+        .goodsAttributeItem {
+            display: flex;
+            align-items: center;
+            line-height: .8rem;
+            background: #dcdfe6;
+            margin-top: .1rem;
+            .attributeLabel {
+                width: 2rem;
+                color: gray;
+                padding: 0 .1rem;
+                font-size: .32rem;
+                text-align: center;
+            }
+            .attributeContent {
+                flex: 1 1;
+                font-size: .3rem;
+                line-height: .6rem;
+                padding: 0 .1rem;
+            }
+        }
+    }
+}
+.goodsAttribute .problemWrap {
+    margin-bottom: .2rem;
+    .problemLabel {
+        font-size: .32rem;
+        line-height: .6rem;
+        span {
+            color: red;
+            margin-right: .1rem;
+        }
+    }
+    .problemContent {
+        font-size: .3rem;
+        line-height: .5rem;
+        color: gray;
     }
 }

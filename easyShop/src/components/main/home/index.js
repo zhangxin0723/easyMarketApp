@@ -10,8 +10,10 @@ import Swiper from 'swiper/dist/js/swiper.js'
 class Home extends Component {
     componentDidMount() {
         this.props.home.getHomeData()
+    }
+    componentDidUpdate(){
         new Swiper(this.refs.swiperDom, {
-            observer: true,
+            loop: true,
             autoplay: {
                 delay: 1000,
             },
@@ -20,7 +22,7 @@ class Home extends Component {
             },
         })
         new Swiper(this.refs.swiperTop, {
-            observer: true,
+            loop: true,
             spaceBetween: 15,
             slidesPerView: 'auto',//开启slide宽度自定义功能  
             centeredSlides: true,//首个居中  
@@ -130,7 +132,7 @@ class Home extends Component {
                                 {
                                     item.goodsList.map(val => {
                                         return (
-                                            <a tag='div' href={`/goods/${item.id}`} key={val.id}>
+                                            <a tag='div' href={`/goods/${val.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
                                                     <img src={val.list_pic_url} />
                                                 </div>

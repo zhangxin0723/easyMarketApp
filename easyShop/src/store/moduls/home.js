@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx'
 import { getHome, getCatelog, getNavData, getBrand,getBrandData } from '../../services/home'
-import { get } from 'https';
 export default class Home {
     //@observable 修饰符
     @observable homeData = null;
