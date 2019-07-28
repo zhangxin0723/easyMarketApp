@@ -11,9 +11,18 @@ import topicDetail from './components/main/Topic/topicDetail'
 import commnet from './components/main/Topic/comment'
 //点击跳留言
 import commentWrite from './components/main/Topic/topicCommentWrite'
+
+//首页分类详情
+import Categorys from './components/main/Home/categorys.js'
+//首页商家详情
+import BrandDetail from './components/main/Home/brandDetail'
+//购物车详情
+import Goods from './components/main/detail/goods'
+
 //引入mobx
 import { Provider } from 'mobx-react'
 import store from './store/index'
+import 'antd-mobile/dist/antd-mobile.css'
 //解决300ms延迟问题
 var FastClick = require('fastclick');
 FastClick.attach(document.body);
@@ -27,6 +36,9 @@ ReactDOM.render(
                 <Route path='/topicDetail/:id' component={topicDetail} />
                 <Route path='/comment/:id' component={commnet} />
                 <Route path='/commentWrite' component={commentWrite} />
+                <Route path='/categorys/:id' component={Categorys}></Route>
+                <Route path='/brandDetail/:id' component={BrandDetail}></Route>
+                <Route path='/goods/:id' component={Goods}></Route>
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
