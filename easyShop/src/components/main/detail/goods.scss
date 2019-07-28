@@ -257,3 +257,144 @@
         color: gray;
     }
 }
+.goodsComment {
+    margin-top: .2rem;
+    background: white;
+    .goodsCommentTitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1rem;
+        padding: 0 .4rem;
+        border-bottom: 1px solid gainsboro;
+        div{
+            &:nth-child(1) {
+                flex: 1 1;
+                text-align: left;
+            }
+            &:nth-child(2) {
+                width: auto;
+                text-align: right;
+            }
+        }
+    }
+    .commentList {
+        background: white;
+        padding: .2rem;
+        .commentItem {
+            width: 100%;
+            height: auto;
+            position: relative;
+            background: white;
+            color: gray;
+            padding-bottom: .1rem;
+            .userInfo {
+                height: .8rem;
+                line-height: .8rem;
+                font-size: .24rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                div{
+                    &:nth-child(1) {
+                        flex: 1 1;
+                        color: black;
+                    }
+                    &:nth-child(2) {
+                        width: auto;
+                    }
+                }
+            }
+            .userComment {
+                line-height: .6rem;
+                font-size: .3rem;
+            }
+            .commentPicList {
+                display: flex;
+                img {
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    box-sizing: content-box;
+                    margin-right: .1rem;
+                }
+            }
+        }
+    }
+}
+.goodsList {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    .goodsItem {
+        width: 50%;
+        background: white;
+        height: auto;
+        padding: .2rem;
+        position: relative;
+        .goodsItemImg {
+            width: 100%;
+            min-height: 2rem;
+            height: auto;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .goodsItemName {
+            text-align: center;
+            font-size: .28rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-bottom: .3rem;
+            padding-top: .1rem;
+        }
+        .goodsItemPrice {
+            text-align: center;
+            font-size: .28rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: red;
+        }
+        &:nth-child(2n+1):after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #f5f5f9;
+            border-left-width: 2px;
+            box-sizing: border-box;
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+        }
+        &:nth-child(2n):after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #f5f5f9;
+            border-right-width: 2px;
+            box-sizing: border-box;
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+        }
+    }
+}
+.topicDetailImg{
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}

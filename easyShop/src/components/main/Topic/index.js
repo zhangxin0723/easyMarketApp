@@ -1,11 +1,37 @@
 import React, { Component } from 'react'
-
-export default class Topic extends Component {
+import './topic.scss'
+import { inject , observer} from 'mobx-react'
+@inject('topic')
+@observer
+class Topic extends Component {
+    componentDidMount() {
+        this.props.topic.getTopicData()
+        this.props.topic.getTopicDetail()
+    }
+    topicDetail(id) {
+        //根据专题Id获取专题详情
+        this.props.topic.getTopicDetail(id)
+        this.props.history.push({pathname:`/topicDetail/?id=${id}`})
+    }
     render() {
         return (
-            <div>
-                主题
+            <div className='topic_wrap'>
+                {
+                    this.props.topic.mytopic.data && this.props.topic.mytopic.data.map(item => {
+                            return  <div className='topic_cont' key={item.id} 
+                                onClick={() => this.topicDetail(item.id)}
+                            >
+                                        <img src={item.scene_pic_url} alt=""/>
+                                        <div className='topice_title'>{item.title}</div>
+                                        <div className='topice_center'>{item.subtitle}</div>
+                                           <div className='topic_price'>
+                                            {item.price_info}元起
+                                        </div>
+                                    </div> 
+                    })
+                }
             </div>
         )
     }
 }
+export default Topic

@@ -11,7 +11,6 @@ import Catelog from './Catelog'
 import Cart from './Cart'
 //我的
 import Mine from './Mine'
-
 export default class Main extends Component {
     render() {
         return (

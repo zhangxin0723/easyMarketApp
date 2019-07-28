@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 
-const key = 'authorization'
+const key = 'x-nideshop-token'
 //设置cookie,过期时间为10个小时
 export function setToken(val) {
     let date = new Date();

@@ -5,6 +5,12 @@ import Main from './components/main/main'
 import Login from './components/login/login'
 import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+//专题详情
+import topicDetail from './components/main/Topic/topicDetail'
+//全部评论
+import commnet from './components/main/Topic/comment'
+//点击跳留言
+import commentWrite from './components/main/Topic/topicCommentWrite'
 
 //首页分类详情
 import Categorys from './components/main/Home/categorys.js'
@@ -27,6 +33,9 @@ ReactDOM.render(
             <Switch>
                 <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
+                <Route path='/topicDetail/:id' component={topicDetail} />
+                <Route path='/comment/:id' component={commnet} />
+                <Route path='/commentWrite' component={commentWrite} />
                 <Route path='/categorys/:id' component={Categorys}></Route>
                 <Route path='/brandDetail/:id' component={BrandDetail}></Route>
                 <Route path='/goods/:id' component={Goods}></Route>

@@ -36,7 +36,7 @@ class Categorys extends Component {
             <div className='App'>
                 <div className='noTabPageContent'>
                     <div className='header'>
-                        <div className='left'><i className='iconfont icon-angle-left'></i></div>
+                        <div className='left' onClick={()=>{this.props.history.goBack()}}><i className='iconfont icon-angle-left'></i></div>
                         <div className='title'>奇趣分类</div>
                         <div className='right'></div>
                     </div>
