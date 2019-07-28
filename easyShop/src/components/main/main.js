@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
+import routes from '../../router/config'
 import './main.scss'
 //首页
 import Home from './Home'
@@ -13,9 +14,15 @@ import Cart from './Cart'
 import Mine from './Mine'
 export default class Main extends Component {
     render() {
+        console.log(routes)
         return (
             <div className='main'>
                 <main className="main_main">
+                    {/* {
+                        routes.map((item,index) => {
+                            return <Route></Route>
+                        })
+                    } */}
                     <Route path='/main/home' component={Home}></Route>
                     <Route path='/main/topic' component={Topic}></Route>
                     <Route path='/main/catelog' component={Catelog}></Route>

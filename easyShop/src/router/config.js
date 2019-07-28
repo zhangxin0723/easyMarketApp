@@ -1,33 +1,11 @@
 import React from "react"
 import LoadAble from "react-loadable" //按需加载
-<<<<<<< HEAD
-//首页
-import Home from '../components/main/Home'
-//主题
-import Topic from '../components/main/Topic'
-//分类
-import Catelog from '../components/main/Catelog'
-//购物车
-import Cart from '../components/main/Cart'
-//我的
-import Mine from '../components/main/Mine'
-//登录
-import Login from '../components/login/login'
-=======
-
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
 //定义一个函数
 function Load(){
     return <div>
         Loading...
     </div>
 }
-<<<<<<< HEAD
-const Home=LoadAble({
-    loader:()=>import('../components/main/Home'),
-    loading:Load
-})
-=======
 //登录
 const Login=LoadAble({
     loader:()=>import( "../components/login/login"),
@@ -44,79 +22,50 @@ const Home=LoadAble({
     loading:Load
 })
 //主题
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
 const Topic=LoadAble({
     loader:()=>import("../components/main/Topic"),
     loading:Load
 })
-<<<<<<< HEAD
-=======
 //分类
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
 const Catelog=LoadAble({
     loader:()=>import("../components/main/Catelog"),
     loading:Load
 })
-<<<<<<< HEAD
-=======
 //购物车
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
 const Cart=LoadAble({
     loader:()=>import("../components/main/Cart"),
     loading:Load
 })
-<<<<<<< HEAD
-=======
 //我的
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
 const Mine=LoadAble({
     loader:()=>import("../components/main/Mine"),
     loading:Load
 })
-<<<<<<< HEAD
-const Login=LoadAble({
-    loader:()=>import("../components/login/login"),
+//首页下的居家
+const  Categorys = LoadAble({
+    loader:()=>import('../components/main/Home/categorys'),
     loading:Load
 })
-const Main=LoadAble({
-    loader:()=>import("../components/main/main"),
+//首页下的详情
+const  BrandDetail = LoadAble({
+    loader:()=>import('../components/main/Home/brandDetail'),
     loading:Load
 })
-let routes = [
-     {
-        path:'/login',
-        component:Login
-     },
-     {
-         path:'/main',
-         component:Main,
-         children:[
-             {
-                 path:'/main/home',
-                 component:Home
-             },
-             {
-                 path:'/main/topic',
-                 component:Topic
-             },
-             {
-                 path:'/main/catelog',
-                 component:Catelog
-             },
-             {
-                path:'/main/cart',
-                component:Cart
-             },
-             {
-                path:'/main/mine',
-                component:Mine
-             },
-         ]
-     }
-]
-=======
-
-
+//专题详情
+const  TopicDetail = LoadAble({
+    loader:()=>import('../components/main/Topic/topicDetail'),
+    loading:Load
+})
+//专题发表评论
+const  CommentWrite = LoadAble({
+    loader:()=>import('../components/main/Topic/topicCommentWrite'),
+    loading:Load
+})
+//专题查看全部评论
+const  Comment = LoadAble({
+    loader:()=>import('../components/main/Topic/comment'),
+    loading:Load
+})
 let routes=[
     {
         path:"/login",
@@ -127,7 +76,7 @@ let routes=[
         children:[
             {
                 path:"/main/home",
-                component:Home
+                component:Home,
             },{
                 path:"/main/topic",
                 component:Topic
@@ -142,7 +91,27 @@ let routes=[
                 component:Mine
             }
         ]
-    }
+    },
+    {
+        path:'/categorys/:id',
+        component:Categorys
+    },
+    {
+        path:'/brandDetail/:id',
+        component:BrandDetail
+    },
+    {
+        path:'/topicDetail/:id',
+        component:TopicDetail
+    },
+    {
+        path:'commentWrite/:id',
+        component:CommentWrite
+    },
+    {
+        path:'comment/:id',
+        component:Comment
+    },
+
 ]
 export default routes
->>>>>>> c7a808377f856d585cbce5047beda7c1d3c07781
