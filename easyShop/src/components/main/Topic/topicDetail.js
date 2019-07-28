@@ -10,7 +10,7 @@ class TopicDetail extends Component {
         size:5
     }
     goback() {
-        this.props.history.goBack()
+        this.props.history.go(-1)
     }
     componentDidMount() {
         let id = this.props.match.params.id.slice(1).split('=')[1]
@@ -24,7 +24,8 @@ class TopicDetail extends Component {
     }
     //点击跳留言
     commentWrite() {
-        this.props.history.push('/commentWrite')
+        let id = this.props.match.params.id.slice(1).split('=')[1]
+        this.props.history.push(`/commentWrite/${id}`)
     }
     render() {
         let id = this.props.match.params.id.slice(1).split('=')[1]

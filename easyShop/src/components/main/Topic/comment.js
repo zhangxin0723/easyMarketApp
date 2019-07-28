@@ -22,7 +22,6 @@ class Comment extends Component {
         this.props.topic.getCommentList(obj)
     }
     render() {
-        console.log(this.props)
         return (
             <div className='comment_wrap'>
                 <header className="header">

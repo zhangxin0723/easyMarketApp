@@ -37,9 +37,6 @@ class login extends Component {
                     </div>
                     <div className='login_button'>
                         <span onClick={() => this.loginBtn()}>登录</span>
-                        {
-                           this.props.login.data
-                        }
                     </div>
                 </div>
             </div>

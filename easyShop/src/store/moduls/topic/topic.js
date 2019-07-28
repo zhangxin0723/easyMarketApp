@@ -22,9 +22,7 @@ export default class Topic {
         console.log(data)
     }
     @action getComment = async (obj) => {  //对某个商品或专题ID进行评论
-        console.log(obj)
-        const data = await getComment()
-        this.mytopicComment = data.data
-        console.log(data)
+        const data = await getComment(obj)
+        this.mytopicComment = data.errno
     }
 }
