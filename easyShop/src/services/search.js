@@ -9,5 +9,5 @@ export function delSearch() {
 }
 //商品查询模糊查询关键字
 export function searchFuzzy(params) {
-    return request.get('/search/helper', { params })
+    return request.get('/api/goods/list', { params })
 }

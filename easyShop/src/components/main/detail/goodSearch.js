@@ -6,12 +6,32 @@ import './goods.scss'
 @observer
 
 class goodSearch extends Component {
+    state={
+        flag:true,
+        show:false
+    }
     componentDidMount() {
         this.props.search.getSearch()
-        this.props.search.searchFuzzy({keyword:'日式'})
+    }
+    fuzzySearch(e) {
+        let theEvent = window.event || e;
+        let code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code === 13) {
+            let val = this.refs.ipt.value;
+            this.props.search.searchFuzzy({ keyword: val })
+            this.setState({
+                flag:!this.state.flag
+            })
+        }
+    }
+    change(){
+        this.setState({
+            show:!this.state.show
+        })
     }
     render() {
         console.log(this.props)
+        let {flag,show}=this.state;
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -25,12 +45,13 @@ class goodSearch extends Component {
                                     <div className='icon'>
                                         <i className='iconfont icon-fangdajing'></i>
                                     </div>
-                                    <input type='text' className='searchInput' placeholder={this.props.search.searchData && this.props.search.searchData.defaultKeyword.keyword} />
+                                    <input type='text' className='searchInput' placeholder={this.props.search.searchData && this.props.search.searchData.defaultKeyword.keyword}
+                                        onKeyDown={(e) => { this.fuzzySearch(e) }} ref='ipt' />
                                     <div className='cancelSearch'>取消</div>
                                 </div>
                             </div>
                         </div>
-                        <div className='searchMsg'>
+                        {flag===true?<div className='searchMsg'>
                             <div className='searchItemWrap'>
                                 <div className='title'>历史记录 <i className='iconfont icon-lajitong' onClick={()=>{this.props.search.delSearch()}}></i></div>
                                 <div className='listWrap'>
@@ -51,7 +72,36 @@ class goodSearch extends Component {
                                     }
                                 </div>
                             </div>
-                        </div>
+                        </div>:
+                        <div className='searchGoods'>
+                            <div className='searchConditionWrap'>
+                                <div className='searchCondition'>
+                                    <div>综合</div>
+                                    <div>价格</div>
+                                    <div className='chooseCategory' onClick={()=>{this.change()}}>居家分类</div>
+                                </div>
+                                {show===true?<div className='searchConditionCategoryWrap'>
+                                    {
+                                        this.props.search.filterData && this.props.search.filterData.filterCategory.map(item=>{
+                                            return (<button className='categoryListItem' key={item.id}>{item.name}</button>)
+                                        })
+                                    } 
+                                </div>:null}
+                            </div>
+                            <div className='goodsList'>
+                                {
+                                    this.props.search.filterData && this.props.search.filterData.data.map(item => {
+                                        return (<a className='goodsItem' key={item.id} href={`/goods/${item.id}`}>
+                                            <div className='goodsItemImg'>
+                                                <img src={item.list_pic_url} />
+                                            </div>
+                                            <div className='goodsItemName'>{item.name}</div>
+                                            <div className='goodsItemPrice'>￥{item.retail_price}元</div>
+                                        </a>)
+                                    })
+                                }
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>

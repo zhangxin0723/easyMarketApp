@@ -3,6 +3,7 @@ import { getSearch, delSearch, searchFuzzy } from '../../services/search'
 
 export default class Search {
     @observable searchData = null;
+    @observable filterData = null;
     //获取商品查询的相关信息
     @action getSearch = async () => {
         const data = await getSearch()
@@ -12,9 +13,10 @@ export default class Search {
     @action delSearch = async () => {
         const data = await delSearch();
     }
-    //商品查询模糊查询关键字
+    //商品查询模糊查询关键字 
     @action searchFuzzy = async  (params) => {
         const data = await searchFuzzy(params)
-        console.log(data)
+        console.log(data.data)
+        this.filterData=data.data
     }
 }
