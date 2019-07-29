@@ -54,7 +54,7 @@ class Categorys extends Component {
                         <div className='goodsList'>
                             {
                                 goodsList.map(item => {
-                                    return (<a className='goodsItem' key={item.id}>
+                                    return (<a className='goodsItem' key={item.id} href={`/goods/${item.id}`}>
                                         <div className='goodsItemImg'>
                                             <img src={item.list_pic_url} />
                                         </div>

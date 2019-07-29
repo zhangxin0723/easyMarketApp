@@ -25,7 +25,6 @@ export default class Home {
     //根据制造商 ID 获取制造商详情
     @action getBrandDetail = async (params) => {
         const data = await getBrand(params)
-        console.log(data.data.brand)
         this.brandData=data.data.brand
     }
     //根据分类 Id 或者制造商 Id 获取商品

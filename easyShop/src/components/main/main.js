@@ -14,7 +14,6 @@ import Cart from './Cart'
 import Mine from './Mine'
 export default class Main extends Component {
     render() {
-        console.log(routes)
         return (
             <div className='main'>
                 <main className="main_main">
