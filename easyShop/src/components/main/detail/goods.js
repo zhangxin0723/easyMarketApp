@@ -14,7 +14,8 @@ class Goods extends Component {
         this.state = {
             modal1: false,
             modal2: false,
-            flag:false
+            flag:false,
+            goodsNum:0
         };
     }
     componentDidMount() {
@@ -44,8 +45,22 @@ class Goods extends Component {
             flag:false
         })
     }
+    //减少
+    decrease() {
+        if(this.state.goodsNum === 0) {
+            return 
+        }
+        this.setState({
+            goodsNum:this.state.goodsNum -=1
+        })
+    }
+    //增加
+    increase() {
+        this.setState({
+            goodsNum:this.state.goodsNum +=1
+        })
+    }
     render() {
-        console.log(this.props.goods)
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -81,7 +96,7 @@ class Goods extends Component {
                         </div>
                         <div className='goodsSize'>
                             <div></div>
-                            <div> x 0</div>
+                            <div> x {this.state.goodsNum}</div>
                             <div>选择规格<i className='iconfont icon-angle-right'></i></div>
                         </div>
                         {this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.length !== 0 ? <div className='goodsComment'>
@@ -184,6 +199,7 @@ class Goods extends Component {
                                 <div className='am-modal-body'>
                                     <div className='goodsSizeDo'>
                                         <div className='goodsSizeSetMsg'>
+                                            <img src={this.props.goods.goodsData && this.props.goods.goodsData.info.list_pic_url} alt=""/>
                                             <div className='gooodsSizePriceAndSize'>
                                                 <div>
                                                     单价：
@@ -191,7 +207,7 @@ class Goods extends Component {
                                                 </div>
                                                 <div>
                                                     库存：
-                                                    <span>100件</span>
+                                                    <span>{this.props.goods.goodsData && this.props.goods.goodsData.info.goods_number}件</span>
                                                 </div>
                                                 <div>
                                                     已选择：
@@ -207,9 +223,9 @@ class Goods extends Component {
                                                 <div className='goodsSizeItemName'>数量</div>
                                                 <div className='goodsSizeListWrap'>
                                                     <div className='goodsBuyCount'>
-                                                        <div className='onePx_border'>-</div>
-                                                        <div className='onePx_border'>0</div>
-                                                        <div className='onePx_border'>+</div>
+                                                        <div className='onePx_border' onClick={() => {this.decrease()}}>-</div>
+                                                        <div className='onePx_border'>{this.state.goodsNum}</div>
+                                                        <div className='onePx_border' onClick={() => {this.increase()}}>+</div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -404,6 +404,11 @@
     .goodsSizeSetMsg {
         height: 100px;
         display: flex;
+        img {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
         .gooodsSizePriceAndSize {
             display: flex;
             justify-content: center;
