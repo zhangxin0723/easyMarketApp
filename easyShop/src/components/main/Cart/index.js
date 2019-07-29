@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import {inject,observer} from 'mobx-react'
+import CartImg from './CartImg'
 import './index.scss'
+@inject('goods')
+@observer
 class Cart extends Component {
     state = {
-        flag:false
+        flag:false,
+        checkall:false
     }
     //编辑
     accomplish() {
@@ -16,6 +21,14 @@ class Cart extends Component {
             flag:false
         })
     }
+    componentDidMount() {
+        this.props.goods.getAddGoodsCart()
+    }
+    // checkout() {
+    //     this.setState({
+    //         checkall:!this.state.checkall
+    //     })
+    // }
     render() {
         return (
             <div className='Cart_wrap'>
@@ -36,38 +49,43 @@ class Cart extends Component {
                     </ul>
                 </header>
                 <section className="main">
-                    <div className='main_box'>
-                        <div className='main_checkout'>
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC" alt=""/>
-                        </div>
-                        <div className='main_goods_img'>
-                            <img src="http://yanxuan.nosdn.127.net/66b9f1638c0517d179262f14ed1345f9.png" alt=""/>
-                        </div>
-                       {this.state.flag === false ? <React.Fragment>
-                            <div className="main_cart_cont">
-                                <div>绿豆糕 80克（4枚入）</div>
-                                <div></div>
-                                <div style={{color:'red'}}>￥12.9</div>
-                            </div>
-                            <div className='main_cart_num'>
-                                x4
-                            </div>
-                        </React.Fragment> : <div className='main_cart_centent'>
-                            <div className='main_cart_centent_name'>已选择：</div>
-                                <div className='main_cart_centent_box'>
-                                    <div style={{color:'red'}}>
-                                        ￥12.9
-                                    </div>
-                                    <div>
-                                        <div className='main_cart_centent_wrap'>
-                                            <div className='cart_decrease'>-</div>
-                                            <div className='cont'>1</div>
-                                            <div className='cart_increase'>+</div>
+                       {this.props.goods.information && this.props.goods.information.map(item => {
+                           return  <div key={item.id} className='main_box'>
+                                        {/* <div className='main_checkout' onClick={() => {this.checkout()}}>
+                                            {this.state.checkall === false ? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC" alt=""/> : <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAAQlBMVEUAAACrKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyurKyvw19exOzv////z4uK1Q0Pt0dGxOjp+CNkCAAAADnRSTlMARVn7B9cVoc/jIWtnJIM++AMAAADUSURBVDjLndRLEoMgEEVRPyCg+FAh+99qYqmAabFL7/hMaKCrN/VWyRZopbJ9ETUaWbq5RLXBX6YmSChcpMRZdRKX6e6kDAqZzAmNYlpEpnCTimfEbfWmhLlnZp8qmLY5a47pVY0oNIWArfV+h5Jy88FsNg2q3JTNRLIK8sd4hTZnwfmzSuVsmRdPFGV+d1S18QjJUQUZB5IcVVBxvMlRBRsvKzmq0JOr9y58yNU/eEj8s3zyyPkvcyQk9wH57/xwOfCrhl9cNMGswdQ4HEt1GKsXfQHGSThPkNi75AAAAABJRU5ErkJggg==' alt='' />      }
+                                        </div> */}
+                                        <CartImg></CartImg>
+                                        <div className='main_goods_img'>
+                                            <img src={item.list_pic_url} alt=""/>
                                         </div>
-                                    </div>
-                                </div>
-                            </div> }
-                    </div>
+                                       { 
+                                        this.state.flag ===false ? <React.Fragment>
+                                       <div className="main_cart_cont">
+                                            <div>{item.goods_name}</div>
+                                            <div></div>
+                                            <div style={{color:'red'}}>￥{item.market_price}</div>
+                                        </div>
+                                        <div className='main_cart_num'>
+                                            x{item.number}
+                                        </div>
+                                        </React.Fragment> :<div className='main_cart_centent'>
+                                                                <div className='main_cart_centent_name'>已选择：</div>
+                                                                <div className='main_cart_centent_box'>
+                                                                    <div style={{color:'red'}}>
+                                                                        ￥{item.market_price}
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className='main_cart_centent_wrap'>
+                                                                            <div className='cart_decrease'>-</div>
+                                                                            <div className='cont'>{item.number}</div>
+                                                                            <div className='cart_increase'>+</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                        }
+                                   </div>
+                       })}
                    {this.state.flag === false ? <div className='footer'>
                         <div className='footer_checkout'>
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC" alt=""/>

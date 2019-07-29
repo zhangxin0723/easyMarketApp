@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
 import '../../../fonts/iconfont.css'
-import { Modal, List, Button, WhiteSpace, WingBlank, Icon} from 'antd-mobile'
+import { Button, WhiteSpace, WingBlank , Toast} from 'antd-mobile'
 @inject('goods', 'topic')
 @observer
 
@@ -59,6 +59,23 @@ class Goods extends Component {
         this.setState({
             goodsNum:this.state.goodsNum +=1
         })
+    }
+    //加入购物车
+    failToast() {
+        if(this.state.goodsNum === 0) {
+            Toast.fail('请选择商品数量', 1);
+        } else if(this.state.goodsNum >= 0) {
+            Toast.fail('添加成功', 1);
+            let goodsId = this.props.goods.goodsData.info.id
+            let productId = this.props.goods.goodsData.productList[0].id
+            let number = this.state.goodsNum
+            console.log(this.props.goods.addGoodsCart({goodsId,productId,number}),'-------')   
+        }
+    }
+    loadingToast() {
+        Toast.loading('下单功能还未GET,耐心等待~', 1, () => {
+          console.log('Load complete !!!');
+        });
     }
     render() {
         return (
@@ -232,8 +249,8 @@ class Goods extends Component {
                                         </div>
                                     </div>
                                     <div className='goodsDoWrap'>
-                                        <div>加入购物车</div>
-                                        <div>立即下单</div>
+                                        <div onClick={() => {this.failToast()}}>加入购物车</div>
+                                        <div onClick={() => {this.loadingToast()}}>立即下单</div>
                                     </div>
                                 </div>
                             </div>
