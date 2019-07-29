@@ -8,7 +8,9 @@ import './goods.scss'
 class goodSearch extends Component {
     state={
         flag:true,
-        show:false
+        show:false,
+        active:1,
+        order:'desc'
     }
     componentDidMount() {
         this.props.search.getSearch()
@@ -26,12 +28,26 @@ class goodSearch extends Component {
     }
     change(){
         this.setState({
-            show:!this.state.show
+            show:!this.state.show,
+            active:3
         })
+    }
+    changeActive(i){
+        let val = this.refs.ipt.value;
+        this.setState({
+            active:i,
+            order:this.state.order==='desc'?'asc':"desc"
+        })
+        console.log(this.state.order)
+        if(i===1){
+            this.props.search.searchFuzzy({ keyword: val })
+        }else if(i===2){
+            this.props.search.searchFuzzy({ keyword: val ,order:this.state.order,sort:'price'})
+        }
     }
     render() {
         console.log(this.props)
-        let {flag,show}=this.state;
+        let {flag,show,active}=this.state;
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -76,9 +92,9 @@ class goodSearch extends Component {
                         <div className='searchGoods'>
                             <div className='searchConditionWrap'>
                                 <div className='searchCondition'>
-                                    <div>综合</div>
-                                    <div>价格</div>
-                                    <div className='chooseCategory' onClick={()=>{this.change()}}>居家分类</div>
+                                    <div className={active===1?'active':''} onClick={()=>{this.changeActive(1)}}>综合</div>
+                                    <div className={active===2?'active':''} onClick={()=>{this.changeActive(2)}}>价格</div>
+                                    <div className={active===3?'active chooseCategory':'chooseCategory'} onClick={()=>{this.change()}}>居家分类</div>
                                 </div>
                                 {show===true?<div className='searchConditionCategoryWrap'>
                                     {

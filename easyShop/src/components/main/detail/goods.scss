@@ -519,6 +519,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        &.active{
+            color:#f00;
+        }
     }
 }
 .searchPage .searchGoods > .searchConditionWrap > .searchConditionCategoryWrap {
