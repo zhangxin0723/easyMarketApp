@@ -6,19 +6,17 @@ import './topicCommentWrite.scss'
 class topicCommentWrite extends Component {
     constructor() {
         super() 
-        this.values = React.createRef()
     }
     state = {
          flag:false,
          values:''
     }
-    changeInput() {
-        let values = this.values.current.value
+    changeInput(e) {
         this.setState({
             flag:true,
-            values
+            values:e.target.value
         })
-        if(values) {
+        if(e.target.value) {
             this.setState({
                 flag:true
             })
@@ -39,6 +37,11 @@ class topicCommentWrite extends Component {
     goBack(e) {
        let id = this.props.location.pathname.slice(1).split('/')[1]
        this.props.history.push({pathname:`/topicDetail/?id=${id}`})                  
+    }
+    commentempty() {
+       this.setState({
+           values:''
+       })
     }
     render() {
         let id = this.props.location.pathname.slice(1).split('/')[1]
@@ -61,10 +64,10 @@ class topicCommentWrite extends Component {
                 </header>
                 <section className="main">
                     <div className='comment_write'>
-                        <textarea className='comment_write_input' maxLength='80' ref={this.values} onChange={() => {this.changeInput()}}></textarea>
+                        <textarea className='comment_write_input' maxLength='80' value={this.state.values} onChange={(e) => {this.changeInput(e)}}></textarea>
                         <span>{this.state.values.length}/80</span>
                         <div className='comment_write_buttons'>
-                            <div className='write_dele'>{ this.state.flag === true ? <span>清空</span> : ''}</div>
+                            <div className='write_dele' onClick={() => this.commentempty()}>{ this.state.flag === true ? <span>清空</span> : ''}</div>
                             <div onClick={() => {this.myleave()}}><span>留言</span></div>
                         </div>
                     </div>

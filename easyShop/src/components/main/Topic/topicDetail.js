@@ -68,7 +68,7 @@ class TopicDetail extends Component {
                                         </div>
                              })
                          }
-                        <a href={`/comment/${id}?typeId=${1}`} className='moreComment'>查看更多评论</a>
+                        <a href={`/comment/${id}?typeId=1`} className='moreComment'>查看更多评论</a>
                      </div>
                      <div className='main_recommend'>
                          <div className='crecomment_special'>推荐专题</div>

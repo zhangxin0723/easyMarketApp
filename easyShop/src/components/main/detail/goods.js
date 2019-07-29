@@ -3,10 +3,10 @@ import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
 
-@inject('goods')
+@inject('goods', 'topic')
 @observer
 
-class goods extends Component {
+class Goods extends Component {
     constructor() {
         super()
         this.swiperDom = React.createRef()
@@ -14,6 +14,8 @@ class goods extends Component {
     componentDidMount() {
         let id = this.props.match.params.id;
         this.props.goods.getGoods({ id })
+        this.props.topic.getCommentList({ valueId: id, typeId: 0, page: 1, size: 1 })
+        this.props.goods.getRelated({ id })
     }
     componentDidUpdate() {
         new Swiper(this.swiperDom.current, {
@@ -27,12 +29,13 @@ class goods extends Component {
         })
     }
     render() {
+        console.log(this.props.goods)
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
                     <div className='goodsPage'>
                         <div className='header'>
-                            <div className='left'><i className='iconfont icon-angle-left'></i></div>
+                            <div className='left' onClick={() => { this.props.history.goBack() }}><i className='iconfont icon-angle-left'></i></div>
                             <div className='title'>{this.props.goods.goodsData && this.props.goods.goodsData.info.name}</div>
                             <div className='right'></div>
                         </div>
@@ -65,7 +68,36 @@ class goods extends Component {
                             <div> x 0</div>
                             <div>选择规格<i className='iconfont icon-angle-right'></i></div>
                         </div>
-                        <div className='goodsAttribute'>
+                        {this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.length !== 0 ? <div className='goodsComment'>
+                            <div className='goodsCommentTitle'>
+                                <div>评论（{this.props.topic && this.props.topic.mytopicComment.count}）</div>
+                                <div><a href={`/comment/${this.props.goods.goodsData.info.id}?typeId=0`}>
+                                    查看全部
+                                    <i className='iconfont icon-angle-right'></i>
+                                </a></div>
+                            </div>
+                            <div className='commentList'>
+                                {
+                                    this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.map((item, index) => {
+                                        return (<div className='commentItem' key={item.id + 'id'}>
+                                            <div className='userInfo'>
+                                                <div>{item.user_info.name ? item.user_info.name : "匿名用户"}</div>
+                                                <div>{item.add_time}</div>
+                                            </div>
+                                            <div className='userComment'>{item.content}</div>
+                                            <div className='commentPicList'>
+                                                {
+                                                    item.pic_list.length !== 0 ? item.pic_list.map(val => {
+                                                        return <img src={val.pic_url} key={val.comment_id} />
+                                                    }) : null
+                                                }
+                                            </div>
+                                        </div>)
+                                    })
+                                }
+                            </div>
+                        </div> : null}
+                        {this.props.goods.goodsData && this.props.goods.goodsData.attribute.length !== 0 ? <div className='goodsAttribute'>
                             <div className='goodsAttributeLine'>商品参数</div>
                             <div className='goodsAttributeList'>
                                 {
@@ -77,12 +109,17 @@ class goods extends Component {
                                     })
                                 }
                             </div>
+                        </div> : null}
+                        <div className='topicDetailImg' dangerouslySetInnerHTML={{ __html: this.props.goods.goodsData && this.props.goods.goodsData.info.goods_desc }}>
+                            {/* {
+                                this.props.goods.goodsData && this.props.goods.goodsData.info.goods_desc
+                            } */}
                         </div>
                         <div className='goodsAttribute'>
-                            <div className='goodsAttributeLine'>商品参数</div>
+                            <div className='goodsAttributeLine'>常见问题</div>
                             {
-                                this.props.goods.goodsData && this.props.goods.goodsData.issue.map(item=>{
-                                        return (<div className='problemWrap' key={item.id}>
+                                this.props.goods.goodsData && this.props.goods.goodsData.issue.map(item => {
+                                    return (<div className='problemWrap' key={item.id}>
                                         <div className='problemLabel'>
                                             <span>√</span>
                                             {item.question}
@@ -91,6 +128,24 @@ class goods extends Component {
                                     </div>)
                                 })
                             }
+                        </div>
+                        <div className='goodsAttribute'>
+                            <div className='goodsAttributeLine'>大家都在看</div>
+                        </div>
+                        <div className='goodsList'>
+                            <div className='goodsList'>
+                                {
+                                    this.props.goods.relatedData && this.props.goods.relatedData.map(item => {
+                                        return (<a className='goodsItem' key={item.id} href={`/goods/${item.id}`}>
+                                            <div className='goodsItemImg'>
+                                                <img src={item.list_pic_url} />
+                                            </div>
+                                            <div className='goodsItemName'>{item.name}</div>
+                                            <div className='goodsItemPrice'>￥{item.retail_price}元</div>
+                                        </a>)
+                                    })
+                                }
+                            </div>
                         </div>
                         <div className='goodsPageDo'>
                             <div className='isLike'>☆</div>
@@ -109,4 +164,4 @@ class goods extends Component {
     }
 }
 
-export default goods
+export default Goods
