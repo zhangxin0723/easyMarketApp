@@ -3,3 +3,7 @@ import request from '../utils/request'
 export function getCatelog(params) {
     return request.get('/catalog/current', { params })
 }
+//获取在售商品数量
+export function getGoodsCount() {
+    return request.get('/goods/count')
+}

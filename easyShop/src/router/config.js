@@ -66,9 +66,14 @@ const  Comment = LoadAble({
     loader:()=>import('../components/main/Topic/comment'),
     loading:Load
 })
-//?????
+//商品详情，加入购物车
 const  Goods = LoadAble({
     loader:()=>import('../components/main/detail/goods'),
+    loading:Load
+})
+//搜索
+const Search=LoadAble({
+    loader:()=>import ('../components/main/detail/goodSearch'),
     loading:Load
 })
 let routes=[
@@ -121,5 +126,9 @@ let routes=[
         path:'/goods/:id',
         component:Goods
     },
+    {
+        path:'/goodSearch',
+        component:Search
+    }
 ]
 export default routes

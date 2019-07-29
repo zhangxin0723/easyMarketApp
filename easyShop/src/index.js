@@ -35,7 +35,6 @@ ReactDOM.render(
             <Switch>
                 {
                     routes.map((item,index) => {
-                        console.log(item)
                         return <Route key={index} path={item.path} render={(props) => {
                            if(item.children) {
                                return <item.component {...props} children={item.children} ></item.component>
