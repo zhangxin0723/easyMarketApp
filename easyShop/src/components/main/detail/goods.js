@@ -71,7 +71,7 @@ class Goods extends Component {
                         {this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.length !== 0 ? <div className='goodsComment'>
                             <div className='goodsCommentTitle'>
                                 <div>评论（{this.props.topic && this.props.topic.mytopicComment.count}）</div>
-                                <div><a href={`/comment/${this.props.goods.goodsData.info.id}?typeId=0`}>
+                                <div><a href={`/comment/${this.props.goods.goodsData && this.props.goods.goodsData.info.id}?typeId=0`}>
                                     查看全部
                                     <i className='iconfont icon-angle-right'></i>
                                 </a></div>
