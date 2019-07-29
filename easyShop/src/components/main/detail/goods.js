@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
-
+import '../../../fonts/iconfont.css'
+import { Modal, List, Button, WhiteSpace, WingBlank, Icon} from 'antd-mobile'
 @inject('goods', 'topic')
 @observer
 
@@ -10,6 +11,11 @@ class Goods extends Component {
     constructor() {
         super()
         this.swiperDom = React.createRef()
+        this.state = {
+            modal1: false,
+            modal2: false,
+            flag:false
+        };
     }
     componentDidMount() {
         let id = this.props.match.params.id;
@@ -26,6 +32,16 @@ class Goods extends Component {
             autoplay: {
                 delay: 1000,
             },
+        })
+    }
+    showModal() {
+        this.setState({
+            flag:!this.state.flag
+        })
+    }
+    onClose() {
+        this.setState({
+            flag:false
         })
     }
     render() {
@@ -154,11 +170,61 @@ class Goods extends Component {
                                     <span>3</span>
                                 </i>
                             </div>
-                            <div className='addCart'>加入购物车</div>
+                            <div className='addCart' onClick={() => this.showModal('modal2')}>加入购物车</div>
                             <div className='payGoods'>立即购买</div>
                         </div>
                     </div>
                 </div>
+                {this.state.flag === true ? <div className='am-modal-container-1564386063872'>
+                    <div>
+                    <div className='am-modal-mask'></div>
+                    <div className='am-modal-wrap am-modal-wrap-popup' role='dialog'>
+                        <div className='am-modal am-modal-popup am-modal-popup-slide-up'>
+                            <div className='am-modal-content'>
+                                <div className='am-modal-body'>
+                                    <div className='goodsSizeDo'>
+                                        <div className='goodsSizeSetMsg'>
+                                            <div className='gooodsSizePriceAndSize'>
+                                                <div>
+                                                    单价：
+                                                    <span>￥{this.props.goods.goodsData && this.props.goods.goodsData.info.retail_price}</span>
+                                                </div>
+                                                <div>
+                                                    库存：
+                                                    <span>100件</span>
+                                                </div>
+                                                <div>
+                                                    已选择：
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                            <div className='closeModel' onClick={() => {this.onClose('modal1')}}>
+                                                <i className='iconfont icon-quxiao'></i>
+                                            </div>
+                                        </div>
+                                        <div className='goodsSizeWrap'>
+                                            <div className='goodsSizeItem'>
+                                                <div className='goodsSizeItemName'>数量</div>
+                                                <div className='goodsSizeListWrap'>
+                                                    <div className='goodsBuyCount'>
+                                                        <div className='onePx_border'>-</div>
+                                                        <div className='onePx_border'>0</div>
+                                                        <div className='onePx_border'>+</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='goodsDoWrap'>
+                                        <div>加入购物车</div>
+                                        <div>立即下单</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div> : null}
             </div>
         )
     }

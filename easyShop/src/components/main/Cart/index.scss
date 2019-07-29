@@ -87,8 +87,71 @@ html,body,#root {
             .main_cart_num {
                 width: auto;
             }
+            .main_cart_centent {
+                flex: 1 1;
+                min-width: 0;
+                >div {
+                    height: 50%;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding-left: .2rem;
+                }
+                .main_cart_centent_name {
+                    font-size: .3rem;
+                }
+                .main_cart_centent_box {
+                    height: 50%;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    padding-left: .2rem;
+                    div {
+                        &:nth-child(2) {
+                            display: flex;
+                            flex: 1 1;
+                            flex-direction: row-reverse;
+                        }
+                        .main_cart_centent_wrap {
+                            width: auto;
+                            display: flex;
+                            div {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: .5rem;
+                            }
+                            .cart_decrease {
+                                width: .6rem;
+                                height: .6rem;
+                                border: 1px solid gainsboro;
+                            }
+                            .cont {
+                                min-width: 1rem;
+                                height: .6rem;
+                                padding: 0 .2rem;
+                                font-size: .32rem;
+                                border: 1px solid gainsboro;
+                                border-right: none;
+                                border-left: none;
+                            }
+                            .cart_increase {
+                                width: .6rem;
+                                height: .6rem;
+                                border: 1px solid gainsboro;
+                            }
+                        }
+                    }
+                }
+            }
         }
-        .footer {
+        .footer , .cartGoodsDo {
             position: fixed;
             bottom: 1rem;
             height: 1.1rem;
@@ -113,14 +176,14 @@ html,body,#root {
                 line-height: 1.1rem;
                 font-size: .3rem;
             }
-            .footer_compile {
+            .footer_compile , .footer_accomplish{
                 width: auto;
                 padding: 0 .5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
-            .footer_order {
+            .footer_order , .footer_delete {
                 text-align: center;
                 background: #ab2b2b;
                 color: white;
