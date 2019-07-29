@@ -23,6 +23,8 @@ import Goods from './components/main/detail/goods'
 import { Provider } from 'mobx-react'
 import store from './store/index'
 import 'antd-mobile/dist/antd-mobile.css'
+//路由
+import routes from './router/config'
 //解决300ms延迟问题
 var FastClick = require('fastclick');
 FastClick.attach(document.body);
@@ -31,14 +33,26 @@ ReactDOM.render(
     <Provider {...store}>
         <BrowserRouter>
             <Switch>
-                <Route path='/main' component={Main}></Route>
+                {
+                    routes.map((item,index) => {
+                        console.log(item)
+                        return <Route key={index} path={item.path} render={(props) => {
+                           if(item.children) {
+                               return <item.component {...props} children={item.children} ></item.component>
+                           } else {
+                               return <item.component {...props}></item.component>
+                           }
+                        }}></Route>
+                    })
+                }
+                {/* <Route path='/main' component={Main}></Route>
                 <Route path='/login' component={Login} />
                 <Route path='/topicDetail/:id' component={topicDetail} />
                 <Route path='/comment/:id' component={commnet} />
                 <Route path='/commentWrite' component={commentWrite} />
                 <Route path='/categorys/:id' component={Categorys}></Route>
                 <Route path='/brandDetail/:id' component={BrandDetail}></Route>
-                <Route path='/goods/:id' component={Goods}></Route>
+                <Route path='/goods/:id' component={Goods}></Route> */}
                 <Redirect to="/main/home"></Redirect>
             </Switch>
         </BrowserRouter>
