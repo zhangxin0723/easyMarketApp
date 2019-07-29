@@ -18,16 +18,22 @@ export default class Main extends Component {
         return (
             <div className='main'>
                 <main className="main_main">
-                    {/* {
-                        routes.map((item,index) => {
-                            return <Route></Route>
-                        })
-                    } */}
-                    <Route path='/main/home' component={Home}></Route>
+                   {
+                       this.props.children.map((item,index) => {
+                           return <Route key={index} path={item.path} render={(props) => {
+                                if(item.children) {
+                                    return <item.component {...props} child={item.children}></item.component>
+                                } else {
+                                    return <item.component {...props}></item.component>
+                                }
+                           }}></Route>
+                       })
+                   }
+                    {/* <Route path='/main/home' component={Home}></Route>
                     <Route path='/main/topic' component={Topic}></Route>
                     <Route path='/main/catelog' component={Catelog}></Route>
                     <Route path='/main/cart' component={Cart}></Route>
-                    <Route path='/main/mine' component={Mine}></Route>
+                    <Route path='/main/mine' component={Mine}></Route> */}
                 </main>
                 <footer className="main_footer">
                     <NavLink to='/main/home' activeClassName="footer_active">

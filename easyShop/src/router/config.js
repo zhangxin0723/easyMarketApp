@@ -66,6 +66,11 @@ const  Comment = LoadAble({
     loader:()=>import('../components/main/Topic/comment'),
     loading:Load
 })
+//?????
+const  Goods = LoadAble({
+    loader:()=>import('../components/main/detail/goods'),
+    loading:Load
+})
 let routes=[
     {
         path:"/login",
@@ -105,13 +110,16 @@ let routes=[
         component:TopicDetail
     },
     {
-        path:'commentWrite/:id',
+        path:'/commentWrite/:id',
         component:CommentWrite
     },
     {
-        path:'comment/:id',
+        path:'/comment/:id',
         component:Comment
     },
-
+    {
+        path:'/goods/:id',
+        component:Goods
+    },
 ]
 export default routes
