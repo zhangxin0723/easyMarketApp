@@ -398,6 +398,97 @@
         display: block;
     }
 }
+.goodsSizeDo {
+    padding: .4rem .2rem;
+    background: white;
+    .goodsSizeSetMsg {
+        height: 100px;
+        display: flex;
+        img {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+        .gooodsSizePriceAndSize {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 .1rem;
+            flex: 1 1;
+            height: 100%;
+            font-size: .3rem;
+            text-align: left;
+            div {
+                width: 100%;
+                height: auto;
+                line-height: .6rem;
+                span {
+                    color: red;
+                }
+            }
+        }
+        .closeModel {
+            width: auto;
+            color: red;
+        }
+    }
+    .goodsSizeWrap {
+        .goodsSizeItemName {
+            text-align: left;
+            color: black;
+            padding: .1rem 0;
+        }
+        .goodsSizeListWrap {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            .goodsBuyCount {
+                width: 4rem;
+                height: .8rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                div {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    &:nth-child(3) {
+                        width: 30%;
+                        border: 1px solid #ededed;
+                    }
+                    &:nth-child(2) {
+                        width: 40%;
+                        border: 1px solid #ededed;
+                    }
+                    &:nth-child(1) {
+                        width: 30%;
+                        border: 1px solid #ededed;
+                    }
+                }
+                .position {
+                    position: relative;
+                }
+            }
+        }
+    }
+}
+.goodsDoWrap {
+    height: 1rem;
+    display: flex;
+    div {
+        width: 50%;
+        color: white;
+        line-height: 1rem;
+        &:nth-child(1) {
+            background: linear-gradient(90deg, #ff9500, #ff5e3a);
+        }
+        &:nth-child(2) {
+            background: linear-gradient(90deg, #1d62f0, #19d5fd);
+        }
+    }
+}
 
 
 

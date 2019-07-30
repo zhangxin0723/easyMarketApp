@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
-
+import '../../../fonts/iconfont.css'
+import { Button, WhiteSpace, WingBlank , Toast} from 'antd-mobile'
 @inject('goods', 'topic')
 @observer
 
@@ -10,6 +11,12 @@ class Goods extends Component {
     constructor() {
         super()
         this.swiperDom = React.createRef()
+        this.state = {
+            modal1: false,
+            modal2: false,
+            flag:false,
+            goodsNum:0
+        };
     }
     componentDidMount() {
         let id = this.props.match.params.id;
@@ -28,8 +35,50 @@ class Goods extends Component {
             },
         })
     }
+    showModal() {
+        this.setState({
+            flag:!this.state.flag
+        })
+        console.log(12312)
+    }
+    onClose() {
+        this.setState({
+            flag:false
+        })
+    }
+    //减少
+    decrease() {
+        if(this.state.goodsNum === 0) {
+            return 
+        }
+        this.setState({
+            goodsNum:this.state.goodsNum -=1
+        })
+    }
+    //增加
+    increase() {
+        this.setState({
+            goodsNum:this.state.goodsNum +=1
+        })
+    }
+    //加入购物车
+    failToast() {
+        if(this.state.goodsNum === 0) {
+            Toast.fail('请选择商品数量', 1);
+        } else if(this.state.goodsNum >= 0) {
+            Toast.fail('添加成功', 1);
+            let goodsId = this.props.goods.goodsData.info.id
+            let productId = this.props.goods.goodsData.productList[0].id
+            let number = this.state.goodsNum
+            console.log(this.props.goods.addGoodsCart({goodsId,productId,number}),'-------')   
+        }
+    }
+    loadingToast() {
+        Toast.loading('下单功能还未GET,耐心等待~', 1, () => {
+          console.log('Load complete !!!');
+        });
+    }
     render() {
-        console.log(this.props.goods)
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -65,7 +114,7 @@ class Goods extends Component {
                         </div>
                         <div className='goodsSize'>
                             <div></div>
-                            <div> x 0</div>
+                            <div> x {this.state.goodsNum}</div>
                             <div>选择规格<i className='iconfont icon-angle-right'></i></div>
                         </div>
                         {this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.length !== 0 ? <div className='goodsComment'>
@@ -154,11 +203,62 @@ class Goods extends Component {
                                     <span>3</span>
                                 </i>
                             </div>
-                            <div className='addCart'>加入购物车</div>
+                            <div className='addCart' onClick={() => this.showModal('modal2')}>加入购物车</div>
                             <div className='payGoods'>立即购买</div>
                         </div>
                     </div>
                 </div>
+                {this.state.flag === true ? <div className='am-modal-container-1564386063872'>
+                    <div>
+                    <div className='am-modal-mask'></div>
+                    <div className='am-modal-wrap am-modal-wrap-popup' role='dialog'>
+                        <div className='am-modal am-modal-popup am-modal-popup-slide-up'>
+                            <div className='am-modal-content'>
+                                <div className='am-modal-body'>
+                                    <div className='goodsSizeDo'>
+                                        <div className='goodsSizeSetMsg'>
+                                            <img src={this.props.goods.goodsData && this.props.goods.goodsData.info.list_pic_url} alt=""/>
+                                            <div className='gooodsSizePriceAndSize'>
+                                                <div>
+                                                    单价：
+                                                    <span>￥{this.props.goods.goodsData && this.props.goods.goodsData.info.retail_price}</span>
+                                                </div>
+                                                <div>
+                                                    库存：
+                                                    <span>{this.props.goods.goodsData && this.props.goods.goodsData.info.goods_number}件</span>
+                                                </div>
+                                                <div>
+                                                    已选择：
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                            <div className='closeModel' onClick={() => {this.onClose('modal1')}}>
+                                                <i className='iconfont icon-quxiao'></i>
+                                            </div>
+                                        </div>
+                                        <div className='goodsSizeWrap'>
+                                            <div className='goodsSizeItem'>
+                                                <div className='goodsSizeItemName'>数量</div>
+                                                <div className='goodsSizeListWrap'>
+                                                    <div className='goodsBuyCount'>
+                                                        <div className='onePx_border' onClick={() => {this.decrease()}}>-</div>
+                                                        <div className='onePx_border'>{this.state.goodsNum}</div>
+                                                        <div className='onePx_border' onClick={() => {this.increase()}}>+</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='goodsDoWrap'>
+                                        <div onClick={() => {this.failToast()}}>加入购物车</div>
+                                        <div onClick={() => {this.loadingToast()}}>立即下单</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div> : null}
             </div>
         )
     }
