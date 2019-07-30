@@ -16,3 +16,12 @@ export function addGoodsCart(params) {
 export function getAddGoodsCart() {
     return request.get('/cart/index')
 }
+//购物车商品是否选中
+export function getCartChecked(params) {
+    return request.post('/cart/checked',params)
+}
+//是否添加到收藏栏
+export function addCollect(params) {
+    console.log(params)
+    return request.post('/collect/addordelete',params)
+}
