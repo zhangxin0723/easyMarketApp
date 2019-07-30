@@ -39,6 +39,7 @@ class Goods extends Component {
         this.setState({
             flag:!this.state.flag
         })
+        console.log(12312)
     }
     onClose() {
         this.setState({
