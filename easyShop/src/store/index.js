@@ -4,7 +4,8 @@ import MyLogin from './moduls/login/login'
 import Topic from './moduls/topic/topic'
 import Goods from './moduls/goods'
 import Catelog from './moduls/catelog'
-import Search from './moduls/search';
+import Search from './moduls/search'
+import Mine from './moduls/mine'
 //实例化模块
 const home = new Home()
 //登录
@@ -17,11 +18,14 @@ const goods = new Goods()
 const catelog = new Catelog()
 //搜索
 const search =new Search()
+//我的
+const mine =new Mine()
 export default {
     home,
     login,
     topic,
     goods,
     catelog,
-    search
+    search,
+    mine
 }

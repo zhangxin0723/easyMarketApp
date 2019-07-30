@@ -76,6 +76,11 @@ const Search=LoadAble({
     loader:()=>import ('../components/main/detail/goodSearch'),
     loading:Load
 })
+//收藏
+const Collect=LoadAble({
+    loader:()=>import('../components/main/Mine/collect'),
+    loading:Load
+})
 let routes=[
     {
         path:"/login",
@@ -129,6 +134,10 @@ let routes=[
     {
         path:'/goodSearch',
         component:Search
+    },
+    {
+        path:'/collect',
+        component:Collect
     }
 ]
 export default routes
