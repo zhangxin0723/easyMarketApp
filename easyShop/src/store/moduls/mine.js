@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { getCollect, getAddress } from '../../services/mine'
+import { getCollect, getAddress, addAddress, delAddress } from '../../services/mine'
 
 export default class Mine {
     @observable collectData = null;
@@ -8,12 +8,20 @@ export default class Mine {
     @action getCollect = async (params) => {
         const data = await getCollect(params)
         this.collectData = data.data
-        console.log(data)
     }
     //获取用户地址数据
     @action getAddress = async () => {
         const data = await getAddress()
         this.addressData = data.data
-        console.log(data)
+    }
+    //增加地址
+    @action addAddress = async () => {
+        const data = await addAddress()
+        this.getAddress()
+    }
+    //删除地址
+    @action delAddress= async (params)=>{
+        const data = await delAddress(params)
+        this.getAddress()
     }
 }

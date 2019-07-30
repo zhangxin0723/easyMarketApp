@@ -7,3 +7,11 @@ export function getCollect(params) {
 export function getAddress(){
     return request.get('/address/list')
 }
+//增加地址
+export function addAddress(params){
+    return request.post('/api/address/save',params)
+}
+//删除地址
+export function delAddress(params){
+    return request.post('/api/address/delete',params)
+}
