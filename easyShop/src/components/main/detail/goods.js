@@ -24,6 +24,7 @@ class Goods extends Component {
         this.props.goods.getGoods({ id })
         this.props.topic.getCommentList({ valueId: id, typeId: 0, page: 1, size: 1 })
         this.props.goods.getRelated({ id })
+        this.props.goods.getCartSum()
     }
     componentDidUpdate() {
         new Swiper(this.swiperDom.current, {
@@ -96,7 +97,7 @@ class Goods extends Component {
         }
     }
     render() {
-        console.log(this.props.goods.goodsData)
+        console.log(this.props.goods.Sum.goodsCount,'100')
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -225,7 +226,7 @@ class Goods extends Component {
 
                             <div className='cartNum'>
                                 <i className='iconfont icon-gouwuche-xuanzhong'>
-                                    <span>3</span>
+                                    <span>{this.props.goods.Sum.goodsCount}</span>
                                 </i>
                             </div>
                             <div className='addCart' onClick={() => this.showModal('modal2')}>加入购物车</div>

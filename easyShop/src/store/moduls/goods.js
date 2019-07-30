@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { getGoodsDetail, getGoodsRelated , addGoodsCart , getAddGoodsCart , getCartChecked , addCollect} from '../../services/goods'
+import { getGoodsDetail, getGoodsRelated , addGoodsCart , getAddGoodsCart , getCartChecked , addCollect ,getCartSum} from '../../services/goods'
 
 export default class Goods {
     @observable goodsData = null;
@@ -12,6 +12,8 @@ export default class Goods {
     @observable cartChecked = []
     //是否添加到收藏栏
     @observable isCollect = []
+    //获取用户购物车商品数量
+    @observable Sum = []
     @action getGoods = async (params) => {
         const data = await getGoodsDetail(params)
         this.goodsData = data.data
@@ -26,6 +28,7 @@ export default class Goods {
         console.log(params)
         const data = await addGoodsCart(params)
         this.addCart = data.data
+        this.getCartSum()
         console.log(data)
     }
      //获取用户购物车数据
@@ -45,6 +48,12 @@ export default class Goods {
         console.log(params)
         const data = await addCollect(params)
         this.isCollect = data.data
+        console.log(data)
+    }
+    //获取用户购物车商品数量
+    @action getCartSum = async () => {
+        const data = await getCartSum()
+        this.Sum = data.data.cartTotal
         console.log(data)
     }
 }
