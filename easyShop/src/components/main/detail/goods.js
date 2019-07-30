@@ -15,7 +15,8 @@ class Goods extends Component {
             modal1: false,
             modal2: false,
             flag:false,
-            goodsNum:0
+            goodsNum:0,
+            Collect:false
         };
     }
     componentDidMount() {
@@ -78,7 +79,24 @@ class Goods extends Component {
           console.log('Load complete !!!');
         });
     }
+    //点击收藏
+    checkCollect() {
+        this.setState({
+            Collect:!this.state.Collect
+        })
+        let valueId = this.props.goods.goodsData.info.id
+        if(this.props.goods.goodsData.userHasCollect === 0) {
+            console.log(1)
+            let typeId = 1
+            this.props.goods.addCollect({typeId,valueId})
+        } else {
+            let typeId = 0
+            this.props.goods.addCollect({typeId,valueId})
+            console.log(1222)
+        }
+    }
     render() {
+        console.log(this.props.goods.goodsData)
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -197,7 +215,14 @@ class Goods extends Component {
                             </div>
                         </div>
                         <div className='goodsPageDo'>
-                            <div className='isLike'>☆</div>
+                            
+                            {/* <div className='isLike' onClick={() => {this.checkCollect()}}>{this.state.Collect === false ? (this.props.goods.goodsData && this.props.goods.goodsData.userHasCollect === 1 ? '★' : '☆') : '★' }</div> */}
+                            <div className='isLike' onClick={() => {this.checkCollect()}}>
+                            {this.props.goods.goodsData&&console.log(this.props.goods.goodsData.userHasCollect,'pppppp',this.state.Collect)}{
+
+                                this.props.goods.goodsData&&this.props.goods.goodsData.userHasCollect === 1 ? "★" : this.state.Collect === true ? "★" : '☆' 
+                            }</div>
+
                             <div className='cartNum'>
                                 <i className='iconfont icon-gouwuche-xuanzhong'>
                                     <span>3</span>
