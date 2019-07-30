@@ -41,3 +41,17 @@
 ## EasyMarket 未完成功能
 
 > - 支付订单、订单查询、优惠券...未来会不断完善！
+
+## End
+
+> - 喜欢 EasyMarket，帮忙点个 Star 吧!
+> - 作者还会不断更新， 您的支持是作者不断更新的动力!
+> - Thanks!
+
+## About Me
+
+> Name: zhangxin0723
+>
+> QQ: 380745482
+>
+> Email：380745482@qq.com
