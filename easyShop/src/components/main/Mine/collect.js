@@ -27,11 +27,11 @@ class Collect extends Component {
                                         <div className='touchClear' key={index}>
                                             <div className='test'>
                                                 <div className='collectItem onePx_bottom'>
-                                                    <img src='http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png' className='collectImg' />
+                                                    <img src={item.list_pic_url} className='collectImg' />
                                                     <div className='collectMsg'>
-                                                        <div>简约知性系列居家地毯 蓝灰格</div>
-                                                        <div>沉稳双拼色 居家温柔伴护</div>
-                                                        <div>￥599元</div>
+                                                        <div>{item.name}</div>
+                                                        <div>{item.goods_brief}</div>
+                                                        <div>￥{item.retail_price}元</div>
                                                     </div>
                                                 </div>
                                             </div>

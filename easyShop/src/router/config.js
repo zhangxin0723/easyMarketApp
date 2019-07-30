@@ -81,6 +81,11 @@ const Collect=LoadAble({
     loader:()=>import('../components/main/Mine/collect'),
     loading:Load
 })
+//地址
+const Address=LoadAble({
+    loader:()=>import('../components/main/Mine/address'),
+    loading:Load
+})
 let routes=[
     {
         path:"/login",
@@ -138,6 +143,10 @@ let routes=[
     {
         path:'/collect',
         component:Collect
+    },
+    {
+        path:'/address',
+        component:Address
     }
 ]
 export default routes

@@ -58,7 +58,7 @@ export default class Mine extends Component {
                                 <i className='iconfont icon-gongzuojilu' style={{ color: 'rgb(33, 150, 243)' }}></i>
                                 <div>我的收藏</div>
                             </div>
-                            <div style={{ color: 'rgb(33, 150, 243)' }}>
+                            <div style={{ color: 'rgb(33, 150, 243)' }} onClick={()=>{this.props.history.push({pathname:'/address'})}}>
                                 <i className='iconfont icon-address' style={{ color: 'rgb(33, 150, 243)' }}></i>
                                 <div>地址管理</div>
                             </div>
