@@ -11,7 +11,7 @@ export default class Search {
     }
     //删除商品查询的历史记录
     @action delSearch = async () => {
-        const data = await delSearch();
+         await delSearch();
     }
     //商品查询模糊查询关键字 
     @action searchFuzzy = async  (params) => {

@@ -57,7 +57,7 @@ class Comment extends Component {
                                             <div className='commentPicList'>
                                                 {
                                                     item.pic_list.length !== 0 ? item.pic_list.map(val => {
-                                                        return <img src={val.pic_url} key={val.comment_id} />
+                                                        return <img src={val.pic_url} key={val.comment_id}  alt=''/>
                                                     }) : null
                                                 }
                                             </div>

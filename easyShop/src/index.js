@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './fonts/iconfont.css'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'

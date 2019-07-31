@@ -7,7 +7,6 @@ import { inject, observer } from 'mobx-react'
 class BrandDetail extends Component {
     componentDidMount() {
         let id = this.props.match.params.id;
-        console.log(this.props)
         this.props.home.getBrandDetail({ id })
         this.props.home.getBrandDetailList({ brandId: id })
     }
@@ -25,7 +24,7 @@ class BrandDetail extends Component {
             <div className='App_brandDetail'>
                 <div className='noTabPageContent'>
                     <div className='header'>
-                        <div className='left' onClick={()=>{this.props.history.goBack()}}><i className='iconfont icon-angle-left'></i></div>
+                        <div className='left' onClick={() => { this.props.history.goBack() }}><i className='iconfont icon-angle-left'></i></div>
                         <div className='title'>{name}</div>
                         <div className='right'></div>
                     </div>
@@ -40,7 +39,7 @@ class BrandDetail extends Component {
                                     data.length !== 0 ? data.map(item => {
                                         return (<a className='goodsItem' key={item.id}>
                                             <div className='goodsItemImg'>
-                                                <img src={item.list_pic_url} />
+                                                <img src={item.list_pic_url} alt='' />
                                             </div>
                                             <div className='goodsItemName'>{item.name}</div>
                                             <div className='goodsItemPrice'>￥{item.retail_price}元</div>
