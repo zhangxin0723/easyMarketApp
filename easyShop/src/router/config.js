@@ -3,7 +3,7 @@ import LoadAble from "react-loadable" //按需加载
 //定义一个函数
 function Load(){
     return <div>
-        Loading...
+        Loading...1111111111
     </div>
 }
 //登录

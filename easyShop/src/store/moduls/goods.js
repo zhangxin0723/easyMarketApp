@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { getGoodsDetail, getGoodsRelated , addGoodsCart , getAddGoodsCart , getCartChecked , addCollect ,getCartSum} from '../../services/goods'
+import { getGoodsDetail, getGoodsRelated , addGoodsCart , getAddGoodsCart , getCartChecked , addCollect ,getCartSum , CartUpdate , CartDelete} from '../../services/goods'
 
 export default class Goods {
     @observable goodsData = null;
@@ -18,6 +18,8 @@ export default class Goods {
     @observable CheckedToAll = true
     //单选
     @observable Radio = true
+    //减少
+    @observable decrease = 0
     @action getGoods = async (params) => {
         const data = await getGoodsDetail(params)
         this.goodsData = data.data
@@ -38,7 +40,6 @@ export default class Goods {
         this.information = data.data.cartList
         this.cartChecked = data.data.cartTotal
         this.CheckedToAll = this.information.every(item => item.checked === 1 )
-       
     }
      //购物车商品是否选中
      @action getCartChecked = async (params,checkall) => {
@@ -63,5 +64,17 @@ export default class Goods {
     @action getCartSum = async () => {
         const data = await getCartSum()
         this.Sum = data.data.cartTotal
+    }
+    //更新购物车
+    @action CartUpdate = async (params) => {
+        const data = await CartUpdate(params)
+        console.log(data)
+        this.getAddGoodsCart()
+    }
+    //删除购物车
+    @action CartDelete = async (params) => {
+        const data = await CartDelete(params)
+        console.log(data)
+        this.getAddGoodsCart()
     }
 }

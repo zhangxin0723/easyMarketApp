@@ -29,3 +29,11 @@ export function addCollect(params) {
 export function getCartSum() {
     return request.get('/cart/goodscount')
 }
+//更新购物车
+export function CartUpdate(params) {
+    return request.post('/api/cart/update',params)
+}
+//删除
+export function CartDelete(params) {
+    return request.post('/api/cart/delete',params)
+}
