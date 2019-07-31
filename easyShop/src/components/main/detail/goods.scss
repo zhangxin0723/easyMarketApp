@@ -638,5 +638,8 @@
         font-size: .28rem;
         border-radius: .08rem;
         margin: .05rem;
+        &.active{
+            border-color: red;
+        }
     }
 }

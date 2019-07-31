@@ -76,11 +76,22 @@ const Search=LoadAble({
     loader:()=>import ('../components/main/detail/goodSearch'),
     loading:Load
 })
+//收藏
+const Collect=LoadAble({
+    loader:()=>import('../components/main/Mine/collect'),
+    loading:Load
+})
+//地址
+const Address=LoadAble({
+    loader:()=>import('../components/main/Mine/address'),
+    loading:Load
+})
 let routes=[
     {
-        path:"/login",
+        path:'/login',
         component:Login
-    },{
+    },
+    {
         path:'/main',
         component:Main,
         children:[
@@ -129,6 +140,14 @@ let routes=[
     {
         path:'/goodSearch',
         component:Search
+    },
+    {
+        path:'/collect',
+        component:Collect
+    },
+    {
+        path:'/address',
+        component:Address
     }
 ]
 export default routes
