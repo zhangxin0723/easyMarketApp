@@ -19,6 +19,7 @@ class login extends Component {
         let password = this.getpwd.current.value
         this.props.login.getData({mobile,password})
         if(getToken()) {
+            window.localStorage.setItem('user',mobile)
             this.props.history.push('/main/home')
         }
     }

@@ -55,7 +55,7 @@ export default class Mine extends Component {
                         <div className='userMsgWrap'>
                             <div className='userLogo'></div>
                             <div className='userMsgs'>
-                                <div>15323807318</div>
+                                <div>{localStorage.getItem('user')}</div>
                                 <div>普通用户</div>
                             </div>
                         </div>
