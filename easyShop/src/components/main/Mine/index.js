@@ -45,6 +45,7 @@ export default class Mine extends Component {
     //退出登录
     loginOut(){
         removeToken()
+        localStorage.removeItem('user')
         this.props.history.push({pathname:"/login"})
     }
     render() {
