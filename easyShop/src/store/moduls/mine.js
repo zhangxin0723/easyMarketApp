@@ -13,10 +13,11 @@ export default class Mine {
     @action getAddress = async () => {
         const data = await getAddress()
         this.addressData = data.data
+        console.log(data)
     }
     //增加地址
     @action addAddress = async () => {
-         await addAddress()
+         const data=await addAddress()
         this.getAddress()
     }
     //删除地址
