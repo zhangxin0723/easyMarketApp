@@ -2,8 +2,8 @@ import React from "react"
 import LoadAble from "react-loadable" //按需加载
 //定义一个函数
 function Load(){
-    return <div>
-        Loading...1111111111
+    return <div style={{width:'100%',height:'100%',position:"fixed",zIndex:99}}>
+        <img style={{width:'100%',height:'100%'}} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564563346097&di=1012549f6fa7224f5ae82a718a1c801c&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F244b57476a7f3612abd2eb87a370679d77f7dbb32efc3-CfUJ1a_fw658" alt=""/>
     </div>
 }
 //登录
