@@ -67,14 +67,12 @@ export default class Goods {
     }
     //更新购物车
     @action CartUpdate = async (params) => {
-        const data = await CartUpdate(params)
-        console.log(data)
+        await CartUpdate(params)
         this.getAddGoodsCart()
     }
     //删除购物车
     @action CartDelete = async (params) => {
-        const data = await CartDelete(params)
-        console.log(data)
+        await CartDelete(params)
         this.getAddGoodsCart()
     }
 }

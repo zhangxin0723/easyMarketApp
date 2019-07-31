@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react'  // eslint-disable-line
 import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
-import '../../../fonts/iconfont.css'
-import { Button, WhiteSpace, WingBlank , Toast} from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 @inject('goods', 'topic')
 @observer
 
@@ -41,7 +40,6 @@ class Goods extends Component {
         this.setState({
             flag:!this.state.flag
         })
-        console.log(12312)
     }
     onClose() {
         this.setState({
@@ -54,13 +52,13 @@ class Goods extends Component {
             return 
         }
         this.setState({
-            goodsNum:this.state.goodsNum -=1
+            goodsNum:this.state.goodsNum -=1    // eslint-disable-line
         })
     }
     //增加
     increase() {
         this.setState({
-            goodsNum:this.state.goodsNum +=1
+            goodsNum:this.state.goodsNum +=1 // eslint-disable-line
         })
     }
     //加入购物车
@@ -72,7 +70,7 @@ class Goods extends Component {
             let goodsId = this.props.goods.goodsData.info.id
             let productId = this.props.goods.goodsData.productList[0].id
             let number = this.state.goodsNum
-            console.log(this.props.goods.addGoodsCart({goodsId,productId,number}),'-------')   
+            this.props.goods.addGoodsCart({goodsId,productId,number})  
         }
     }
     loadingToast() {
@@ -90,7 +88,6 @@ class Goods extends Component {
 
     }
     render() {
-        console.log(this.props.goods.Sum.goodsCount,'100')
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -106,7 +103,7 @@ class Goods extends Component {
                                     {
                                         this.props.goods.goodsData && this.props.goods.goodsData.gallery.map(item => {
                                             return (<div className='swiper-slide' key={item.id}>
-                                                <img src={item.img_url} />
+                                                <img src={item.img_url} alt='' />
                                             </div>)
                                         })
                                     }
@@ -149,7 +146,7 @@ class Goods extends Component {
                                             <div className='commentPicList'>
                                                 {
                                                     item.pic_list.length !== 0 ? item.pic_list.map(val => {
-                                                        return <img src={val.pic_url} key={val.comment_id} />
+                                                        return <img src={val.pic_url} key={val.comment_id} alt='' />
                                                     }) : null
                                                 }
                                             </div>
@@ -199,7 +196,7 @@ class Goods extends Component {
                                     this.props.goods.relatedData && this.props.goods.relatedData.map(item => {
                                         return (<a className='goodsItem' key={item.id} href={`/goods/${item.id}`}>
                                             <div className='goodsItemImg'>
-                                                <img src={item.list_pic_url} />
+                                                <img src={item.list_pic_url} alt='' />
                                             </div>
                                             <div className='goodsItemName'>{item.name}</div>
                                             <div className='goodsItemPrice'>￥{item.retail_price}元</div>

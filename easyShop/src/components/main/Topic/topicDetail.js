@@ -33,9 +33,9 @@ class TopicDetail extends Component {
             <div className='topicDetail_wrap'>
                 <header className="header">
                     <div className='header_left' onClick={() => {this.goback()}}> 
-                        <a href="javascript:;">
+                        <span>
                             <i className='iconfont icon-xiangzuo'></i>
-                        </a>
+                        </span>
                     </div>
                     <span>{this.props.topic.mytopicDetail.title}</span>
                 </header>

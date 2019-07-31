@@ -39,7 +39,6 @@ class goodSearch extends Component {
             active: i,
             order: this.state.order === 'desc' ? 'asc' : "desc"
         })
-        console.log(this.state.order)
         if (i === 1) {
             this.props.search.searchFuzzy({ keyword: val })
         } else if (i === 2) {
@@ -47,14 +46,12 @@ class goodSearch extends Component {
         }
     }
     btn(index, item) {
-        console.log(index, item)
         this.setState({
             ind: index
         })
         this.props.search.searchFuzzy({ keyword:this.refs.ipt.value, categoryId: item.id, order: this.state.order, sort: 'price' })
     }
     render() {
-        console.log(this.props)
         let { flag, show, active, ind ,order} = this.state;
         return (
             <div className='App'>
@@ -107,7 +104,7 @@ class goodSearch extends Component {
                                     {show === true ? <div className='searchConditionCategoryWrap'>
                                         {
                                             this.props.search.filterData && this.props.search.filterData.filterCategory.map((item, index) => {
-                                                return (<button className='categoryListItem' key={item.id} className={ind === index ? "active" : ''} onClick={(e) => { this.btn(index, item) }}>{item.name}</button>)
+                                                return (<button key={item.id} className={ind === index ? "active categoryListItem" : 'categoryListItem'} onClick={(e) => { this.btn(index, item) }}>{item.name}</button>)
                                             })
                                         }
                                     </div> : null}

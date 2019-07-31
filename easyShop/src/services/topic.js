@@ -13,6 +13,5 @@ export function getCommentList(params) {
 }
 //对某个商品或专题ID进行评论
 export function getComment(params) {
-    console.log(params)
     return request.post('/comment/post',params)
 }

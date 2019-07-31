@@ -19,7 +19,6 @@ export default class Topic {
     @action getCommentList = async (obj) => {  //根据商品id 或 专题id 获取评论
         const data = await getCommentList(obj)
         this.mytopicComment = data.data
-        console.log(data)
     }
     @action getComment = async (obj) => {  //对某个商品或专题ID进行评论
         const data = await getComment(obj)

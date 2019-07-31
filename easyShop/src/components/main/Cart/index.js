@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {inject,observer} from 'mobx-react'
 import CartImg from './CartImg'
+import { Toast} from 'antd-mobile';
 import './index.scss'
 @inject('goods')
 @observer
@@ -27,7 +28,7 @@ class Cart extends Component {
     //点击全选
     checkedToCheck() {
         let arr = []
-        this.props.goods.information.map(item => {
+        this.props.goods.information.forEach(item => {
             arr.push(item.product_id)
         })
         let productIds = arr.join(',')
@@ -63,6 +64,7 @@ class Cart extends Component {
             if(item.checked === 1) {
                 arr.push(item.product_id)
             }
+            return arr
         })
         let productIds =arr.join(',')
         this.props.goods.CartDelete({productIds})   
@@ -131,7 +133,7 @@ class Cart extends Component {
                             已选({this.props.goods.cartChecked && this.props.goods.cartChecked.checkedGoodsCount})  ￥{this.props.goods.cartChecked && this.props.goods.cartChecked.checkedGoodsAmount}
                         </div>
                         <div className='footer_compile' onClick={() => {this.accomplish()}}>编辑</div>
-                        <div className='footer_order'>下单</div>
+                        <div className='footer_order' onClick={() => {Toast.fail('你还没有绑定支付功能哦 !!!', 1);}}>下单</div>
                     </div> : <div className='cartGoodsDo'>
                                 <div className='footer_checkout' onClick={() => {this.checkedToCheck()}}>
                                 {this.props.goods.CheckedToAll && this.props.goods.CheckedToAll === true ?  
@@ -139,7 +141,7 @@ class Cart extends Component {
                                :<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAmCAMAAACf4xmcAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzAV+Z0EAAAAVdFJOUwAJ+KUEFTPay2bzRXdZ7RkhmJ6qJOWhY+QAAAEDSURBVDjLnZTplsIgDIUNWwK2tdt9/1cdxHGmVcAc+dH25Hw0+71cvjhztDIZM4mNc4txo+BwZKxSVwbSFoMn8iFuCeDrG0RLNkc6GGK+ttCZ8gIzuJcgBgPxJ4rB4T2OkM0HjgRyq8V7Y8i/3/V06YVb/nKECa0qBYPffB1jaFd8AD8+RrBrY8R41FkQew2MkPtrR6IeRglzoW1/HrbizfZ9Pv8jCH0slOAm+D7mMeUn4PoYwegxpVNlCsqCKMurbJay9R8GyT0HSTmWeciTYsh7K+MPK1MW0H9eQOU652sqcch+15rUrFQXLpuFy7ksXLYuXDUZbBZ9v4sqiqju34jyD97JD4dkfgo1AAAAAElFTkSuQmCC" alt=""/>}
                                 </div>
                                 <div className='footer_checkall'>
-                                    已选({this.props.goods.cartChecked && this.props.goods.cartChecked.checkedGoodsCount}) 
+                                    已选({this.props.goods.information && this.props.goods.information.length}) 
                                 </div>
                                 <div className='footer_accomplish' onClick={() => {this.accomplishs()}}>完成</div>
                                 <div className='footer_delete' onClick={() => {this.CartDelete()}}>删除</div>

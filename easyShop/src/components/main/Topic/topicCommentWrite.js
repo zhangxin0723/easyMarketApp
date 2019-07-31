@@ -4,9 +4,6 @@ import './topicCommentWrite.scss'
 @inject('topic')
 @observer
 class topicCommentWrite extends Component {
-    constructor() {
-        super() 
-    }
     state = {
          flag:false,
          values:''
@@ -53,9 +50,9 @@ class topicCommentWrite extends Component {
             <div className='topicCommentWrite_wrap'>
                 <header className="header">
                     <div className='header_left' onClick={(e) => {this.goBack(e)}}> 
-                        <a href="javascript:;">
+                        <span>  
                             <i className='iconfont icon-xiangzuo'></i>
-                        </a>
+                        </span>
                     </div>
                     <span>查看评论</span>
                     <div className='header_left'> 

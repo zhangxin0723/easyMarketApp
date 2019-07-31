@@ -10,7 +10,6 @@ class Comment extends Component {
     componentDidMount() {
         let flag = this.props.location.search.slice(1).split('=')[1]
         let id = this.props.match.params.id
-        console.log(flag)
         let obj = {
             valueId: id,
             typeId: Number(flag),
@@ -28,9 +27,9 @@ class Comment extends Component {
                 <div className='noTabPageContent'>
                     <header className="header">
                         <div className='header_left' onClick={() => { this.goback() }}>
-                            <a href="javascript:;">
+                            <span>
                                 <i className='iconfont icon-xiangzuo'></i>
-                            </a>
+                            </span>
                         </div>
                         <span>查看更多评论</span>
                         <div className='header_left'></div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-
+import './index.scss'
 @inject('home')
 @observer
 
@@ -19,7 +19,6 @@ class BrandDetail extends Component {
         }
         let { name, simple_desc, app_list_pic_url } = this.props.home.brandData
         let { data } = this.props.home.brandDetailData;
-        console.log(data)
         return (
             <div className='App_brandDetail'>
                 <div className='noTabPageContent'>
@@ -29,7 +28,7 @@ class BrandDetail extends Component {
                         <div className='right'></div>
                     </div>
                     <div className='brandDetail'>
-                        <img src={app_list_pic_url} />
+                        <img src={app_list_pic_url} alt='' />
                         <div className='breadDesc'>{simple_desc}</div>
                     </div>
                     <div className='brandGoodsList'>
@@ -37,7 +36,7 @@ class BrandDetail extends Component {
                             <div className='goodsList'>
                                 {
                                     data.length !== 0 ? data.map(item => {
-                                        return (<a className='goodsItem' key={item.id}>
+                                        return (<a href={`/goods/${item.id}`} className='goodsItem' key={item.id}>
                                             <div className='goodsItemImg'>
                                                 <img src={item.list_pic_url} alt='' />
                                             </div>

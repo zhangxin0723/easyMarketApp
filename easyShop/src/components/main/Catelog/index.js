@@ -37,7 +37,7 @@ class Catelog extends Component {
                     </div>
                     <div className='categogContet'>
                         <div className='categoryWrap'>
-                            <img src={this.props.catelog.catelogData && this.props.catelog.catelogData.banner_url} />
+                            <img src={this.props.catelog.catelogData && this.props.catelog.catelogData.banner_url} alt='' />
                             {this.props.catelog.catelogData && this.props.catelog.catelogData.front_name}
                         </div>
                         <div className='categoryTitle'>
@@ -49,7 +49,7 @@ class Catelog extends Component {
                             {
                                 this.props.catelog.catelogData && this.props.catelog.catelogData.subCategoryList.map(item => {
                                     return (<a className='subCategoryItem' key={item.id} href={`/categorys/${item.id}`}>
-                                        <img src={item.wap_banner_url} />
+                                        <img src={item.wap_banner_url} alt='' />
                                         <div className='subCategoryItemName'>{item.name}</div>
                                     </a>)
                                 })

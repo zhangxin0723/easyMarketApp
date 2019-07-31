@@ -16,7 +16,6 @@ export default class Search {
     //商品查询模糊查询关键字 
     @action searchFuzzy = async  (params) => {
         const data = await searchFuzzy(params)
-        console.log(data.data)
         this.filterData=data.data
     }
 }
