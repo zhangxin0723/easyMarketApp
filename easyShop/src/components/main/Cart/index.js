@@ -72,7 +72,7 @@ class Cart extends Component {
     render() {
         return (
             <div className='Cart_wrap'>
-                <header className="header">
+                <header className="headers">
                     <ul>
                         <li>
                             <span>★</span>
