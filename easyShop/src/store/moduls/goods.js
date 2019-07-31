@@ -16,6 +16,8 @@ export default class Goods {
     @observable Sum = []
     //全选
     @observable CheckedToAll = true
+    //单选
+    @observable Radio = true
     @action getGoods = async (params) => {
         const data = await getGoodsDetail(params)
         this.goodsData = data.data
@@ -39,20 +41,24 @@ export default class Goods {
         this.information = data.data.cartList
         this.cartChecked = data.data.cartTotal
         console.log(data,'111111111111')
-
-        this.Radio = this.information.every(item => item.checked === 1 )
-        console.log(this.Radio)
+        this.CheckedToAll = this.information.every(item => item.checked === 1 )
+       
     }
      //购物车商品是否选中
-     @action getCartChecked = async (params) => {
+     @action getCartChecked = async (params,checkall) => {
          console.log('params',params)
         const data = await getCartChecked(params)
         this.cartChecked = data.data.cartTotal
         console.log(data,'4444')
-        console.log(this.information,'list')
-        this.CheckedToAll = this.information.every(item => {
-            // console.log(item.checked)
-        })
+        if(checkall) {
+            //全选
+            this.CheckedToAll = !this.CheckedToAll
+            this.getAddGoodsCart()
+            return 
+        }
+        //单选
+        this.CheckedToAll = this.information.every(item => item.checked === 1)
+        this.getAddGoodsCart()
     }
     //是否添加到收藏栏
     @action addCollect = async (params) => {
