@@ -24,6 +24,7 @@ class Goods extends Component {
         this.props.goods.getGoods({ id })
         this.props.topic.getCommentList({ valueId: id, typeId: 0, page: 1, size: 1 })
         this.props.goods.getRelated({ id })
+        this.props.goods.getCartSum()
     }
     componentDidUpdate() {
         new Swiper(this.swiperDom.current, {
@@ -85,18 +86,11 @@ class Goods extends Component {
             Collect:!this.state.Collect
         })
         let valueId = this.props.goods.goodsData.info.id
-        if(this.props.goods.goodsData.userHasCollect === 0) {
-            console.log(1)
-            let typeId = 1
-            this.props.goods.addCollect({typeId,valueId})
-        } else {
-            let typeId = 0
-            this.props.goods.addCollect({typeId,valueId})
-            console.log(1222)
-        }
+        this.props.goods.addCollect({typeId:this.props.goods.goodsData.userHasCollect,valueId})
+
     }
     render() {
-        console.log(this.props.goods.goodsData)
+        console.log(this.props.goods.Sum.goodsCount,'100')
         return (
             <div className='App'>
                 <div className='noTabPageContent'>
@@ -215,17 +209,14 @@ class Goods extends Component {
                             </div>
                         </div>
                         <div className='goodsPageDo'>
-                            
-                            {/* <div className='isLike' onClick={() => {this.checkCollect()}}>{this.state.Collect === false ? (this.props.goods.goodsData && this.props.goods.goodsData.userHasCollect === 1 ? '★' : '☆') : '★' }</div> */}
                             <div className='isLike' onClick={() => {this.checkCollect()}}>
-                            {this.props.goods.goodsData&&console.log(this.props.goods.goodsData.userHasCollect,'pppppp',this.state.Collect)}{
-
+                            {
                                 this.props.goods.goodsData&&this.props.goods.goodsData.userHasCollect === 1 ? "★" : this.state.Collect === true ? "★" : '☆' 
                             }</div>
 
                             <div className='cartNum'>
                                 <i className='iconfont icon-gouwuche-xuanzhong'>
-                                    <span>3</span>
+                                    <span>{this.props.goods.Sum.goodsCount}</span>
                                 </i>
                             </div>
                             <div className='addCart' onClick={() => this.showModal('modal2')}>加入购物车</div>

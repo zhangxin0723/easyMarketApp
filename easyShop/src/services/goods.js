@@ -25,3 +25,7 @@ export function addCollect(params) {
     console.log(params)
     return request.post('/collect/addordelete',params)
 }
+//获取用户购物车商品数量
+export function getCartSum() {
+    return request.get('/cart/goodscount')
+}
