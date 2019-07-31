@@ -28,7 +28,6 @@ export default class Goods {
     }
     //添加到购物车
     @action addGoodsCart = async (params) => {
-        console.log(params)
         const data = await addGoodsCart(params)
         this.addCart = data.data
         this.getCartSum()
@@ -43,7 +42,6 @@ export default class Goods {
     }
      //购物车商品是否选中
      @action getCartChecked = async (params,checkall) => {
-         console.log('params',params)
         const data = await getCartChecked(params)
         this.cartChecked = data.data.cartTotal
         if(checkall) {

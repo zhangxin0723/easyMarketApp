@@ -214,7 +214,7 @@ class Goods extends Component {
                                 this.props.goods.goodsData&&this.props.goods.goodsData.userHasCollect === 1 ? "★" : this.state.Collect === true ? "★" : '☆' 
                             }</div>
 
-                            <div className='cartNum'>
+                            <div className='cartNum' onClick={() => {this.props.history.push('/main/cart')}}>
                                 <i className='iconfont icon-gouwuche-xuanzhong'>
                                     <span>{this.props.goods.Sum.goodsCount}</span>
                                 </i>

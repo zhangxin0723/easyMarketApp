@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Tabs, WhiteSpace } from 'antd-mobile';
+import './index.scss'
 
 @inject('home')
 @observer
