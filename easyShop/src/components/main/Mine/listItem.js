@@ -15,7 +15,7 @@ class ListItem extends Component {
             <div className='touchClear' onClick={(e) => { this.action('123') }} ref='touch'>
                 <div className='test' ref='left'>
                     <div className='collectItem onePx_bottom'>
-                        <img src={list_pic_url} className='collectImg' onClick={() => { this.props.history.push({ pathname: `/goods/${value_id}` }) }} />
+                        <img src={list_pic_url} className='collectImg' onClick={() => { this.props.history.push({ pathname: `/goods/${value_id}` }) }} alt=''/>
                         <div className='collectMsg'>
                             <div>{name}</div>
                             <div>{goods_brief}</div>
