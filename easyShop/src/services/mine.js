@@ -15,3 +15,7 @@ export function addAddress(params) {
 export function delAddress(params) {
     return request.post('/api/address/delete', params)
 }
+//删除收藏
+export function delCollect(params){
+    return request.post('/api/collect/addordelete',params)
+}

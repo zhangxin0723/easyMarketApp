@@ -4,6 +4,7 @@
 }
 .App {
     height: 100%;
+    overflow: hidden;
 }
 .tabPageContent {
     min-height: 100%;
@@ -168,7 +169,7 @@
     transform-origin: 0;
 }
 .touchClear .test.left {
-    transform: translateX(-60px);
+    transform: translateX(-1.5rem);
 }
 #collect > .collectList .collectItem .collectMsg > div {
     height: 33.333%;

@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { getCollect, getAddress, addAddress, delAddress } from '../../services/mine'
+import { getCollect, getAddress, addAddress, delAddress, delCollect } from '../../services/mine'
 
 export default class Mine {
     @observable collectData = null;
@@ -23,5 +23,9 @@ export default class Mine {
     @action delAddress = async (params) => {
         const data = await delAddress(params)
         this.getAddress()
+    }
+    @action delCollect = async (params) => {
+        const data = await delCollect(params)
+        this.getCollect({ typeId: 1 })
     }
 }
