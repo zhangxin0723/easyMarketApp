@@ -4,7 +4,7 @@
 }
 .App {
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .tabPageContent {
     min-height: 100%;
@@ -343,5 +343,7 @@
         width: 20%;
         height: 100%;
         background: #fff;
+        border:none;
+        outline: none;
     }
 }
