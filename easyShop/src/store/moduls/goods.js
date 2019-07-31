@@ -21,7 +21,6 @@ export default class Goods {
     @action getGoods = async (params) => {
         const data = await getGoodsDetail(params)
         this.goodsData = data.data
-        console.log(data,'11111')
     }
     @action getRelated = async (params) => {
         const data = await getGoodsRelated(params)
@@ -33,14 +32,12 @@ export default class Goods {
         const data = await addGoodsCart(params)
         this.addCart = data.data
         this.getCartSum()
-        console.log(data)
     }
      //获取用户购物车数据
      @action getAddGoodsCart = async () => {
         const data = await getAddGoodsCart()
         this.information = data.data.cartList
         this.cartChecked = data.data.cartTotal
-        console.log(data,'111111111111')
         this.CheckedToAll = this.information.every(item => item.checked === 1 )
        
     }
@@ -49,7 +46,6 @@ export default class Goods {
          console.log('params',params)
         const data = await getCartChecked(params)
         this.cartChecked = data.data.cartTotal
-        console.log(data,'4444')
         if(checkall) {
             //全选
             this.CheckedToAll = !this.CheckedToAll
@@ -62,15 +58,12 @@ export default class Goods {
     }
     //是否添加到收藏栏
     @action addCollect = async (params) => {
-        console.log(params)
         const data = await addCollect(params)
         this.isCollect = data.data
-        console.log(data)
     }
     //获取用户购物车商品数量
     @action getCartSum = async () => {
         const data = await getCartSum()
         this.Sum = data.data.cartTotal
-        console.log(data)
     }
 }

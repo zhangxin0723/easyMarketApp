@@ -22,7 +22,6 @@ export function getCartChecked(params) {
 }
 //是否添加到收藏栏
 export function addCollect(params) {
-    console.log(params)
     return request.post('/collect/addordelete',params)
 }
 //获取用户购物车商品数量
