@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Toast } from 'antd-mobile';
+import { removeToken } from '../../../utils/index'
 import './index.scss'
 
 export default class Mine extends Component {
@@ -41,6 +42,12 @@ export default class Mine extends Component {
     offline(item) {
         Toast.offline(`${item.name}功能还未解锁，请耐心等候~`,.8);
     }
+    //退出登录
+    loginOut(){
+        console.log(123)
+        removeToken()
+        this.props.history.push({pathname:"/login"})
+    }
     render() {
         return (
             <div className='App'>
@@ -72,7 +79,7 @@ export default class Mine extends Component {
                             }
 
                         </div>
-                        <div className='loginOut'>退出登录</div>
+                        <div className='loginOut' onClick={()=>{this.loginOut()}}>退出登录</div>
                     </div>
                 </div>
             </div>

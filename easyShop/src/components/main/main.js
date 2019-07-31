@@ -1,38 +1,27 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
-import routes from '../../router/config'
+import { getToken } from '../../utils/index'
 import './main.scss'
-//首页
-import Home from './Home'
-//主题
-import Topic from './Topic'
-//分类
-import Catelog from './Catelog'
-//购物车
-import Cart from './Cart'
-//我的
-import Mine from './Mine'
+
 export default class Main extends Component {
     render() {
+        if (getToken() === undefined) {
+            this.props.history.push('/login')
+        }
         return (
             <div className='main'>
                 <main className="main_main">
-                   {
-                       this.props.children.map((item,index) => {
-                           return <Route key={index} path={item.path} render={(props) => {
-                                if(item.children) {
+                    {
+                        this.props.children.map((item, index) => {
+                            return <Route key={index} path={item.path} render={(props) => {
+                                if (item.children) {
                                     return <item.component {...props} child={item.children}></item.component>
                                 } else {
                                     return <item.component {...props}></item.component>
                                 }
-                           }}></Route>
-                       })
-                   }
-                    {/* <Route path='/main/home' component={Home}></Route>
-                    <Route path='/main/topic' component={Topic}></Route>
-                    <Route path='/main/catelog' component={Catelog}></Route>
-                    <Route path='/main/cart' component={Cart}></Route>
-                    <Route path='/main/mine' component={Mine}></Route> */}
+                            }}></Route>
+                        })
+                    }
                 </main>
                 <footer className="main_footer">
                     <NavLink to='/main/home' activeClassName="footer_active">

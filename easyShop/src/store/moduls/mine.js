@@ -20,7 +20,7 @@ export default class Mine {
         this.getAddress()
     }
     //删除地址
-    @action delAddress= async (params)=>{
+    @action delAddress = async (params) => {
         const data = await delAddress(params)
         this.getAddress()
     }

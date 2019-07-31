@@ -88,9 +88,10 @@ const Address=LoadAble({
 })
 let routes=[
     {
-        path:"/login",
+        path:'/login',
         component:Login
-    },{
+    },
+    {
         path:'/main',
         component:Main,
         children:[
