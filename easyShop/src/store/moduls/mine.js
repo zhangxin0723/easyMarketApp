@@ -24,10 +24,9 @@ export default class Mine {
     @action delAddress = async (params) => {
         await delAddress(params)
         this.getAddress()
-        this.getCollect({typeId:0})
     }
     @action delCollect = async (params) => {
         await delCollect(params)
-        this.getCollect({ typeId: 1 })
+        this.getCollect({ typeId: 0 })
     }
 }

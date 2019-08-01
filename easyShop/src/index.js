@@ -9,6 +9,7 @@ import 'antd-mobile/dist/antd-mobile.css'
 //路由
 import routes from './router/config'
 import 'swiper/dist/css/swiper.css'
+
 //解决300ms延迟问题
 var FastClick = require('fastclick');
 FastClick.attach(document.body);
