@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { Route, NavLink } from 'react-router-dom'
-import { getToken } from '../../utils/index'
 import './main.scss'
 
 export default class Main extends Component {
     render() {
-        if (getToken() === undefined) {
-            this.props.history.push('/login')
-        }
         return (
             <div className='main'>
                 <main className="main_main">

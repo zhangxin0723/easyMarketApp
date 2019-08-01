@@ -8,7 +8,7 @@ import './index.scss'
 
 class Collect extends Component {
     componentDidMount() {
-        this.props.mine.getCollect({ typeId: 1 })
+        this.props.mine.getCollect({ typeId: 0 })
     }
     render() {
         return (

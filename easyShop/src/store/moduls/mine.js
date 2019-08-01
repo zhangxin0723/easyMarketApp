@@ -13,16 +13,18 @@ export default class Mine {
     @action getAddress = async () => {
         const data = await getAddress()
         this.addressData = data.data
+        console.log(data)
     }
     //增加地址
     @action addAddress = async () => {
-         await addAddress()
+         const data=await addAddress()
         this.getAddress()
     }
     //删除地址
     @action delAddress = async (params) => {
         await delAddress(params)
         this.getAddress()
+        this.getCollect({typeId:0})
     }
     @action delCollect = async (params) => {
         await delCollect(params)

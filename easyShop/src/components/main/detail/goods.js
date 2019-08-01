@@ -15,7 +15,8 @@ class Goods extends Component {
             modal2: false,
             flag:false,
             goodsNum:0,
-            Collect:false
+            Collect:false,
+            userHasCollect:0
         };
     }
     componentDidMount() {
@@ -80,12 +81,8 @@ class Goods extends Component {
     }
     //点击收藏
     checkCollect() {
-        this.setState({
-            Collect:!this.state.Collect
-        })
         let valueId = this.props.goods.goodsData.info.id
-        this.props.goods.addCollect({typeId:this.props.goods.goodsData.userHasCollect,valueId})
-
+        this.props.goods.addCollect({typeId:0,valueId},valueId)
     }
     render() {
         return (
@@ -208,8 +205,9 @@ class Goods extends Component {
                         <div className='goodsPageDo'>
                             <div className='isLike' onClick={() => {this.checkCollect()}}>
                             {
-                                this.props.goods.goodsData&&this.props.goods.goodsData.userHasCollect === 1 ? "★" : this.state.Collect === true ? "★" : '☆' 
-                            }</div>
+                                this.props.goods.goodsData&&this.props.goods.goodsData.userHasCollect === 0 ?  '☆'  : "★" 
+                            }
+                            </div>
 
                             <div className='cartNum' onClick={() => {this.props.history.push('/main/cart')}}>
                                 <i className='iconfont icon-gouwuche-xuanzhong'>

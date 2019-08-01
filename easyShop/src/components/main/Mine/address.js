@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { PickerView, Modal} from 'antd-mobile';
+import { Picker, List , Toast} from 'antd-mobile';
 import address from './addressData'
+import arrayTreeFilter from 'array-tree-filter';
 
 import './index.scss'
-let city=null;
 
 @inject('mine')
 @observer
@@ -12,43 +12,56 @@ let city=null;
 class Address extends Component {
     state = {
         flag: false,
-        modal2: false,
+        visible: false,
         value: null,
         active:false,
+        pickerValue: [],
     }
     componentDidMount() {
         this.props.mine.getAddress()
     }
-    showModal = key => (e) => {
-        e.preventDefault(); // 修复 Android 上点击穿透
-        this.setState({
-            [key]: true,
-        });
-    }
-    onClose = key => () => {
-        this.setState({
-            [key]: false,
-        });
-    }
-    onChange = (value) => {
-        city=value;
-    }
     save(){
+        if(this.treeChildren.length===0){
+            Toast.fail('请选择地址!!', 1);
+            return 
+        }
+        if(this.refs.name.value===""){
+            Toast.fail('请填写姓名!!', 1);
+            return
+        }
+        if(this.refs.mobile.value===""){
+            Toast.fail('请填写电话!!', 1);
+            return
+        }
+        if(this.refs.address.value===""){
+            Toast.fail('请填写详细地址!!', 1);
+            return
+        }
         let obj={
             address:this.refs.address.value,
-            city_id:city[1]===undefined?"":Number(city[1]),
-            district_id:city[2]===undefined?"":Number(city[2]),
+            city_id:this.treeChildren[1].value,
+            district_id:this.treeChildren[2].value,
             is_default:this.state.active,
             mobile:this.refs.mobile.value,
             name:this.refs.name.value,
-            province_id:city[0]===undefined?"":Number(city[0]),
+            province_id:this.treeChildren[0].value,
+            full_region:this.treeChildren[0].label+this.treeChildren[1].label+this.treeChildren[2].label
         }
         this.setState({flag:false})
+        console.log(obj)
         this.props.mine.addAddress(obj)
     }
     dele(id){
         this.props.mine.delAddress({id})
     }
+    getSel() {
+        const value = this.state.pickerValue;
+        if (!value) {
+          return '';
+        }
+        this.treeChildren = arrayTreeFilter(address, (c, level) => { return c.value === value[level]});
+        this.treeChildren.map(v => v.label).join(',');
+      }
     render() {
         let { flag } = this.state;
         return (
@@ -68,9 +81,20 @@ class Address extends Component {
                             <div className='ipt'>
                                 <input type='text' placeholder='电话号码' ref='mobile'/>
                             </div>
-                            <div className='ipt' onClick={()=>{this.setState({modal2:true})}}>
-                                <input type='text' placeholder='' />
-                            </div>
+                            <List>
+                                <Picker
+                                    visible={this.state.visible}
+                                    value={this.state.pickerValue}
+                                    data={address}
+                                    onChange={v => this.setState({ pickerValue: v })}
+                                    onOk={() => this.setState({ visible: false })}
+                                    onDismiss={() => this.setState({ visible: false })}
+                                    >
+                                    <List.Item extra={this.getSel()} onClick={() => this.setState({ visible: true })}>
+                                        地址
+                                    </List.Item>
+                                </Picker>
+                            </List>
                             <div className='ipt'>
                                 <input type='text' placeholder='详细地址' ref='address'/>
                             </div>
@@ -91,9 +115,9 @@ class Address extends Component {
                                         <div className='addressMsg'>
                                             <div className='concatName'>{item.name}</div>
                                             <div className='addressDetail'>
-                                                <div className='concatPhone'>15034027868</div>
+                                                <div className='concatPhone'>{item.mobile}</div>
+                                                <div className='concatAddress'>{item.full_region}</div>
                                                 <div className='concatAddress'>{item.address}</div>
-                                                <div className='concatAddress'>上地软件园38</div>
                                             </div>
                                             <div className='deleteAddress' onClick={()=>{this.dele(item.id)}}>
                                                 <i className='iconfont icon-lajitong'></i>
@@ -109,20 +133,6 @@ class Address extends Component {
                         </div>
                     </div>
                 </div>
-                <Modal
-                    popup
-                    visible={this.state.modal2}
-                    onClose={this.onClose('modal2')}
-                    animationType="slide-up"
-                >
-                    <div className='btn'><button>取消</button><button>确定</button></div>
-                    <PickerView
-                        data={address}
-                        onChange={this.onChange}
-                        onScrollChange={this.onScrollChange}
-                        value={['2', '37', '403']}
-                    />
-                </Modal>
             </div>
         )
     }
