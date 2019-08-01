@@ -7,7 +7,10 @@ import Lazyimg, { withLazyimg } from 'react-lazyimg-component';
 //动画
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
-
+//???
+// import ProgressiveLazyImage , {Icon} from 'react-progressive-lazy-image'
+//!!!
+import ProgressiveImage from 'react-progressive-image'
 @inject('home')
 @observer
 class Home extends Component {
@@ -64,11 +67,18 @@ class Home extends Component {
                     {
                         this.props.home.homeData && this.props.home.homeData.channel.map(item => {
                             return (<a href={`/categorys/${item.id}`} key={item.id}><dl>
-                                <dt>
-                                    <Lazy
+                                <dt>    
+                                <ProgressiveImage src={item.icon_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                    {src => <img src={src} alt="an image" />}
+                                </ProgressiveImage>
+                                {/* <ProgressiveLazyImage
+                                    src={item.icon_url}
+                                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
+                                /> */}
+                                    {/* <Lazy
                                         className="lazy"
                                         src={item.icon_url}
-                                    />
+                                    /> */}
                                     {/* <img src={item.icon_url} alt=''  /> */}
                                 </dt>
                                 <dd>{item.name}</dd>
@@ -84,10 +94,13 @@ class Home extends Component {
                                 return (<a className='brandItem' href={`/brandDetail/${item.id}`} key={item.id}>
                                     <div className='brandItemName'>{item.name}</div>
                                     <div className='brandItemMinPrice'>{item.floor_price}元起</div>
-                                    <Lazy
+                                    <ProgressiveImage src={item.new_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                        {src => <img src={src} alt="an image" />}
+                                    </ProgressiveImage>
+                                    {/* <Lazy
                                         className="lazy"
                                         src={item.new_pic_url}
-                                    />
+                                    /> */}
                                         {/* <img src={item.new_pic_url}  alt=''  /> */}
                                 </a>)
                             })
@@ -100,10 +113,13 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.newGoodsList.map(item => {
                                 return (<a className='newGoodsItem'  href={`/goods/${item.id}`} key={item.id}>
-                                     <Lazy
+                                     <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                        {src => <img src={src} alt="an image" />}
+                                    </ProgressiveImage>
+                                     {/* <Lazy
                                         className="lazy"
                                         src={item.list_pic_url}
-                                    />
+                                    /> */}
                                     {/* <img src={item.list_pic_url}  alt='' /> */}
                                     <div className='newGoodsName'>{item.name}</div>
                                     <div className='newGoodsPrice'>￥{item.retail_price}</div>
@@ -118,10 +134,13 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.hotGoodsList.map(item => {
                                 return (<a className='hotGoodsItem' key={item.id} href={`/goods/${item.id}`}>
-                                     <Lazy
+                                    <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                        {src => <img src={src} alt="an image" />}
+                                    </ProgressiveImage>
+                                     {/* <Lazy
                                         className="lazy"
                                         src={item.list_pic_url}
-                                    />
+                                    /> */}
                                     {/* <img src={item.list_pic_url}  alt='' /> */}
                                     <div className='hotGoodsInfos'>
                                         <div className='hotGoodsName'>{item.name}</div>
@@ -141,10 +160,13 @@ class Home extends Component {
                                 {
                                     this.props.home.homeData && this.props.home.homeData.topicList.map(item => {
                                         return (<div className='swiper-slide' key={item.id} onClick={()=>{this.props.history.push({pathname:`/topicDetail/?id=${item.id}`})}}>
-                                             <Lazy
+                                                  <ProgressiveImage src={item.item_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                                    {src => <img src={src} alt="an image" />}
+                                                </ProgressiveImage>
+                                             {/* <Lazy
                                                 className="lazy"
                                                 src={item.item_pic_url}
-                                            />
+                                            /> */}
                                             {/* <img src={item.item_pic_url}  alt='' /> */}
                                             <div className='topGoodSubTitle'>
                                                 关爱他成长的每一个足迹
@@ -168,10 +190,13 @@ class Home extends Component {
                                         return (
                                             <a tag='div' href={`/goods/${val.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
-                                                    <Lazy
+                                                <ProgressiveImage src={val.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
+                                                    {src => <img src={src} alt="an image" />}
+                                                </ProgressiveImage>
+                                                    {/* <Lazy
                                                         className="lazy"
                                                         src={val.list_pic_url}
-                                                    />
+                                                    /> */}
                                                     {/* <img src={val.list_pic_url}  alt='' /> */}
                                                 </div>
                                                 <div className='goodsItemName'>{val.name}</div>
@@ -194,4 +219,5 @@ class Home extends Component {
         )
     }
 }
+
 export default Home
