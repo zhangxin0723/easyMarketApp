@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react'
 import './index.scss'
 import 'swiper/dist/css/swiper.css'
 import Swiper from 'swiper/dist/js/swiper.js'
-import ImgLazyLoad from '../../../utils/imgLazyLoad/index'
 
 @inject('home')
 @observer
@@ -37,11 +36,7 @@ class Home extends Component {
                             {
                                 this.props.home.homeData && this.props.home.homeData.banner.map(item => {
                                     return (<div className='swiper-slide' key={item.id}>
-                                        {/* <img src={item.image_url} alt='' /> */}
-                                        <ImgLazyLoad
-                                            offSetTop={0}
-                                            realUrl = {item.image_url}>
-                                        </ImgLazyLoad>
+                                        <img src={item.image_url} alt='' />
                                     </div>)
                                 })
                             }
@@ -54,11 +49,7 @@ class Home extends Component {
                         this.props.home.homeData && this.props.home.homeData.channel.map(item => {
                             return (<a href={`/categorys/${item.id}`} key={item.id}><dl>
                                 <dt>
-                                    {/* <img src={item.icon_url} alt=''  /> */}
-                                    <ImgLazyLoad
-                                        offSetTop={44}
-                                        realUrl = {item.icon_url}>
-                                    </ImgLazyLoad>
+                                    <img src={item.icon_url} alt=''  />
                                 </dt>
                                 <dd>{item.name}</dd>
                             </dl></a>)
@@ -73,11 +64,7 @@ class Home extends Component {
                                 return (<a className='brandItem' href={`/brandDetail/${item.id}`} key={item.id}>
                                     <div className='brandItemName'>{item.name}</div>
                                     <div className='brandItemMinPrice'>{item.floor_price}元起</div>
-                                    {/* <img src={item.new_pic_url}  alt=''  /> */}
-                                    <ImgLazyLoad
-                                        offSetTop={44}
-                                        realUrl = {item.new_pic_url}>
-                                    </ImgLazyLoad>
+                                    <img src={item.new_pic_url}  alt=''  />
                                 </a>)
                             })
                         }
@@ -89,11 +76,7 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.newGoodsList.map(item => {
                                 return (<a className='newGoodsItem'  href={`/goods/${item.id}`} key={item.id}>
-                                    {/* <img src={item.list_pic_url}  alt='' /> */}
-                                    <ImgLazyLoad
-                                        offSetTop={44}
-                                        realUrl = {item.list_pic_url}>
-                                    </ImgLazyLoad>
+                                    <img src={item.list_pic_url}  alt='' />
                                     <div className='newGoodsName'>{item.name}</div>
                                     <div className='newGoodsPrice'>￥{item.retail_price}</div>
                                 </a>)
@@ -107,11 +90,7 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.hotGoodsList.map(item => {
                                 return (<a className='hotGoodsItem' key={item.id} href={`/goods/${item.id}`}>
-                                    {/* <img src={item.list_pic_url}  alt='' /> */}
-                                    <ImgLazyLoad
-                                        offSetTop={44}
-                                        realUrl = {item.list_pic_url}>
-                                    </ImgLazyLoad>
+                                    <img src={item.list_pic_url}  alt='' />
                                     <div className='hotGoodsInfos'>
                                         <div className='hotGoodsName'>{item.name}</div>
                                         <div className='hotGoodsInfo'>{item.goods_brief}</div>
@@ -130,11 +109,7 @@ class Home extends Component {
                                 {
                                     this.props.home.homeData && this.props.home.homeData.topicList.map(item => {
                                         return (<div className='swiper-slide' key={item.id} onClick={()=>{this.props.history.push({pathname:`/topicDetail/?id=${item.id}`})}}>
-                                            {/* <img src={item.item_pic_url}  alt='' /> */}
-                                            <ImgLazyLoad
-                                                offSetTop={44}
-                                                realUrl = {item.item_pic_url}>
-                                            </ImgLazyLoad>
+                                            <img src={item.item_pic_url}  alt='' />
                                             <div className='topGoodSubTitle'>
                                                 关爱他成长的每一个足迹
                                                 <span className='topGoodPrice'>￥0元起</span>
@@ -157,11 +132,7 @@ class Home extends Component {
                                         return (
                                             <a tag='div' href={`/goods/${val.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
-                                                    {/* <img src={val.list_pic_url}  alt='' /> */}
-                                                    <ImgLazyLoad
-                                                        offSetTop={44}
-                                                        realUrl = {val.list_pic_url}>
-                                                    </ImgLazyLoad>
+                                                    <img src={val.list_pic_url}  alt='' />
                                                 </div>
                                                 <div className='goodsItemName'>{val.name}</div>
                                                 <div className='goodsItemPrice'>￥{val.retail_price}</div>
