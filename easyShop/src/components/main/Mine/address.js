@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react'
 import { PickerView, Modal} from 'antd-mobile';
 import address from './addressData'
 
-
 import './index.scss'
 let city=null;
 
