@@ -3,6 +3,8 @@ import { inject, observer } from 'mobx-react'
 import Swiper from 'swiper'
 import './goods.scss'
 import { Toast } from 'antd-mobile'
+import { NavLink } from 'react-router-dom'
+
 @inject('goods', 'topic')
 @observer
 
@@ -25,6 +27,10 @@ class Goods extends Component {
         this.props.topic.getCommentList({ valueId: id, typeId: 0, page: 1, size: 1 })
         this.props.goods.getRelated({ id })
         this.props.goods.getCartSum()
+    }
+    componentWillReceiveProps(nextProps){
+        let id = nextProps.match.params.id;
+        this.props.goods.getGoods({ id })
     }
     componentDidUpdate() {
         new Swiper(this.swiperDom.current, {
@@ -126,10 +132,10 @@ class Goods extends Component {
                         {this.props.topic.mytopicComment.data && this.props.topic.mytopicComment.data.length !== 0 ? <div className='goodsComment'>
                             <div className='goodsCommentTitle'>
                                 <div>评论（{this.props.topic && this.props.topic.mytopicComment.count}）</div>
-                                <div><a href={`/comment/${this.props.goods.goodsData && this.props.goods.goodsData.info.id}?typeId=0`}>
+                                <div><NavLink to={`/comment/${this.props.goods.goodsData && this.props.goods.goodsData.info.id}?typeId=0`}>
                                     查看全部
                                     <i className='iconfont icon-angle-right'></i>
-                                </a></div>
+                                </NavLink></div>
                             </div>
                             <div className='commentList'>
                                 {
@@ -191,13 +197,13 @@ class Goods extends Component {
                             <div className='goodsList'>
                                 {
                                     this.props.goods.relatedData && this.props.goods.relatedData.map(item => {
-                                        return (<a className='goodsItem' key={item.id} href={`/goods/${item.id}`}>
+                                        return (<div className='goodsItem' key={item.id} onClick={()=>{this.props.history.push({pathname:`/goods/${item.id}`})}}>
                                             <div className='goodsItemImg'>
                                                 <img src={item.list_pic_url} alt='' />
                                             </div>
                                             <div className='goodsItemName'>{item.name}</div>
                                             <div className='goodsItemPrice'>￥{item.retail_price}元</div>
-                                        </a>)
+                                        </div>)
                                     })
                                 }
                             </div>

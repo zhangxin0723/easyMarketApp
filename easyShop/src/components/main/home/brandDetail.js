@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import './index.scss'
+import { NavLink } from 'react-router-dom'
 @inject('home')
 @observer
 
@@ -36,13 +37,13 @@ class BrandDetail extends Component {
                             <div className='goodsList'>
                                 {
                                     data.length !== 0 ? data.map(item => {
-                                        return (<a href={`/goods/${item.id}`} className='goodsItem' key={item.id}>
+                                        return (<NavLink to={`/goods/${item.id}`} className='goodsItem' key={item.id}>
                                             <div className='goodsItemImg'>
                                                 <img src={item.list_pic_url} alt='' />
                                             </div>
                                             <div className='goodsItemName'>{item.name}</div>
                                             <div className='goodsItemPrice'>￥{item.retail_price}元</div>
-                                        </a>)
+                                        </NavLink>)
                                     }) : null
                                 }
                             </div>

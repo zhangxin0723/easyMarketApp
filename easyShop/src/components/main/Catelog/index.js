@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import "./index.scss"
+import { NavLink } from 'react-router-dom'
 
 @inject('home', 'catelog')
 @observer
@@ -48,10 +49,10 @@ class Catelog extends Component {
                         <div className='subCategory'>
                             {
                                 this.props.catelog.catelogData && this.props.catelog.catelogData.subCategoryList.map(item => {
-                                    return (<a className='subCategoryItem' key={item.id} href={`/categorys/${item.id}`}>
+                                    return (<NavLink className='subCategoryItem' key={item.id} to={`/categorys/${item.id}`}>
                                         <img src={item.wap_banner_url} alt='' />
                                         <div className='subCategoryItemName'>{item.name}</div>
-                                    </a>)
+                                    </NavLink>)
                                 })
                             }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../../fonts/iconfont.css'
 import './topicDetail.scss'
 import { inject , observer} from 'mobx-react'
+import { NavLink } from 'react-router-dom'
 @inject('topic')
 @observer
 class TopicDetail extends Component {
@@ -68,7 +69,7 @@ class TopicDetail extends Component {
                                         </div>
                              })
                          }
-                        <a href={`/comment/${id}?typeId=1`} className='moreComment'>查看更多评论</a>
+                        <NavLink to={`/comment/${id}?typeId=1`} className='moreComment'>查看更多评论</NavLink>
                      </div>
                      <div className='main_recommend'>
                          <div className='crecomment_special'>推荐专题</div>
