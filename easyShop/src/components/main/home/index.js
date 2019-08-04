@@ -50,11 +50,11 @@ class Home extends Component {
                             {
                                 this.props.home.homeData && this.props.home.homeData.banner.map(item => {
                                     return (<div className='swiper-slide' key={item.id}>
-                                         <Lazy
+                                         {/* <Lazy
                                             className="lazy"
                                             src={item.image_url}
-                                         />
-                                        {/* <img src={item.image_url} alt='' /> */}
+                                         /> */}
+                                        <img src={item.image_url} alt='' />
                                     </div>)
                                 })
                             }
