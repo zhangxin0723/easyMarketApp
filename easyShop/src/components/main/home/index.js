@@ -20,7 +20,6 @@ class Home extends Component {
     }
     componentDidUpdate(){
         new Swiper(this.refs.swiperDom, {
-            // loop: true,
             autoplay: {
                 delay: 1000,
             },

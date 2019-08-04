@@ -4,7 +4,6 @@ import { Picker, List , Toast} from 'antd-mobile';
 import address from './addressData'
 import arrayTreeFilter from 'array-tree-filter';
 
-
 import './index.scss'
 
 @inject('mine')

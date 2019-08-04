@@ -17,7 +17,7 @@ export default class Mine {
     }
     //增加地址
     @action addAddress = async () => {
-         const data=await addAddress()
+        await addAddress()
         this.getAddress()
     }
     //删除地址
