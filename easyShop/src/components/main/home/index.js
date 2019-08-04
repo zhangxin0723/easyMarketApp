@@ -4,6 +4,7 @@ import './index.scss'
 import 'swiper/dist/css/swiper.css'
 import Swiper from 'swiper/dist/js/swiper.js'
 import Lazyimg, { withLazyimg } from 'react-lazyimg-component';
+import { NavLink } from 'react-router-dom'
 //动画
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
@@ -66,7 +67,7 @@ class Home extends Component {
                 <nav className="nav_list">
                     {
                         this.props.home.homeData && this.props.home.homeData.channel.map(item => {
-                            return (<a href={`/categorys/${item.id}`} key={item.id}><dl>
+                            return (<NavLink to={`/categorys/${item.id}`} key={item.id}><dl>
                                 <dt>    
                                 <ProgressiveImage src={item.icon_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
                                     {src => <img src={src} alt="an image" />}
@@ -82,7 +83,7 @@ class Home extends Component {
                                     {/* <img src={item.icon_url} alt=''  /> */}
                                 </dt>
                                 <dd>{item.name}</dd>
-                            </dl></a>)
+                            </dl></NavLink>)
                         })
                     }
                 </nav>
@@ -91,7 +92,7 @@ class Home extends Component {
                     <div className='brandWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.brandList.map(item => {
-                                return (<a className='brandItem' href={`/brandDetail/${item.id}`} key={item.id}>
+                                return (<NavLink className='brandItem' to={`/brandDetail/${item.id}`} key={item.id}>
                                     <div className='brandItemName'>{item.name}</div>
                                     <div className='brandItemMinPrice'>{item.floor_price}元起</div>
                                     <ProgressiveImage src={item.new_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
@@ -102,7 +103,7 @@ class Home extends Component {
                                         src={item.new_pic_url}
                                     /> */}
                                         {/* <img src={item.new_pic_url}  alt=''  /> */}
-                                </a>)
+                                </NavLink>)
                             })
                         }
                     </div>
@@ -112,7 +113,7 @@ class Home extends Component {
                     <div className='newGoodsWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.newGoodsList.map(item => {
-                                return (<a className='newGoodsItem'  href={`/goods/${item.id}`} key={item.id}>
+                                return (<NavLink className='newGoodsItem'  to={`/goods/${item.id}`} key={item.id}>
                                      <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
                                         {src => <img src={src} alt="an image" />}
                                     </ProgressiveImage>
@@ -123,7 +124,7 @@ class Home extends Component {
                                     {/* <img src={item.list_pic_url}  alt='' /> */}
                                     <div className='newGoodsName'>{item.name}</div>
                                     <div className='newGoodsPrice'>￥{item.retail_price}</div>
-                                </a>)
+                                </NavLink>)
                             })
                         }
                     </div>
@@ -133,7 +134,7 @@ class Home extends Component {
                     <div className='hotGoodsWrap'>
                         {
                             this.props.home.homeData && this.props.home.homeData.hotGoodsList.map(item => {
-                                return (<a className='hotGoodsItem' key={item.id} href={`/goods/${item.id}`}>
+                                return (<NavLink className='hotGoodsItem' key={item.id} to={`/goods/${item.id}`}>
                                     <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
                                         {src => <img src={src} alt="an image" />}
                                     </ProgressiveImage>
@@ -147,7 +148,7 @@ class Home extends Component {
                                         <div className='hotGoodsInfo'>{item.goods_brief}</div>
                                         <div className='hotGoodsPrice'>￥{item.retail_price}</div>
                                     </div>
-                                </a>)
+                                </NavLink>)
                             })
                         }
                     </div>
@@ -188,7 +189,7 @@ class Home extends Component {
                                 {
                                     item.goodsList.map(val => {
                                         return (
-                                            <a tag='div' href={`/goods/${val.id}`} key={val.id}>
+                                            <NavLink tag='div' to={`/goods/${val.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
                                                 <ProgressiveImage src={val.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
                                                     {src => <img src={src} alt="an image" />}
@@ -201,14 +202,14 @@ class Home extends Component {
                                                 </div>
                                                 <div className='goodsItemName'>{val.name}</div>
                                                 <div className='goodsItemPrice'>￥{val.retail_price}</div>
-                                            </a>
+                                            </NavLink>
                                         )
                                     })
                                 }
-                                <a className='categoryMoreGoods' href={`/categorys/${item.id}`}>
+                                <NavLink className='categoryMoreGoods' to={`/categorys/${item.id}`}>
                                     <div>更多{item.name}好物</div>
                                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAABDCAMAAADwFEhBAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABLUExURf///4uLi7KysszMzHJycvb29qurq2ZmZv7+/m1tbZSUlN3d3Xd3d35+fsbGxtnZ2e/v7/z8/J2dneHh4evr676+voaGhri4uNPT04zm/X4AAAIzSURBVFjDvVjRlqsgDKwojgEsYq36/196pbZdRVyjh728eCxlIGEySbzd/nI0uWh7QwCZvhV5cxrgUdYIRl0+TgDIwQOQErlu5PTa6Fwo8jCDZCKIAjCldeufnS0NUAgGSnWfELLRxebcmE0o9+oAopv+ldn9eevnu18hcjrax5+T8l/mS0Ad2isVUO7t41rQs2K47EloXRxCgUbe1Y0EFQOpWhSayyBdoI2cuARpPg01odzeCMieCQZLCG+nIzzPRdQTtOZJlUFV5zAqhWy15I5Cng1taXBfvharV+bIVxuL4FjMkUEsj6GvKJ1eHGRAdk0uMwwfD9cYr2GMqKvPkUx1DcOZjxPKCG3D0ddRXf8urWEZlpuYelnUcx4BuWNCTSCR1OAIzUwVxWFlhiICoubIEwx3vCVqa7OYaaaYPPdSOW75/jKi55J0UrqNomv0/mHATcde94MzNzD+QeCHvUAgVRKFfwCn1GsRq6/VtMXA8VgmKDdjrG3hYGxt4ft0tmVYafns0/6EAG18+r5bxdbSyN2+Ocbk+kzUPM51XsztcP0dc6zY34m5KfY7tgbtxP5Hg1haKPuoBn2XTmni0Jg+qoXum5g4uSGuyT+5IUWO8rnSXoGwy6SdIGcnqR1S1DBXaqlbWEulqOmS1JZJatxXrc1u2B7xWnsnoe4Zotx+78Fy527vkaQHStKLpekJk/SmPz2yDntkze6Rg169k87J7nSvnuabQfDtorj47eK/j3/n9xya7EBtgAAAAABJRU5ErkJggg==" alt="more" />
-                                </a>
+                                </NavLink>
                                 </div>
                             </Fragment>)
                 })

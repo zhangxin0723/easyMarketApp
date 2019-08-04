@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './fonts/iconfont.css'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 //引入mobx
 import { Provider } from 'mobx-react'
 import store from './store/index'
@@ -13,9 +13,10 @@ import 'swiper/dist/css/swiper.css'
 //解决300ms延迟问题
 var FastClick = require('fastclick');
 FastClick.attach(document.body);
+
 ReactDOM.render(
     <Provider {...store}>
-        <BrowserRouter>
+        <HashRouter>
             <Switch>
                 {routes.map((item, index) => {
                     return <Route key={index} path={item.path} render={(props) => {
@@ -28,6 +29,6 @@ ReactDOM.render(
                 })}
                 <Redirect to="/main/home"></Redirect>
             </Switch>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
     , document.getElementById('root'));
