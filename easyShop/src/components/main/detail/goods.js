@@ -4,7 +4,8 @@ import Swiper from 'swiper'
 import './goods.scss'
 import { Toast } from 'antd-mobile'
 import { NavLink } from 'react-router-dom'
-
+//图片懒加载
+import lazyLoad from '../../../loadImg'
 @inject('goods', 'topic')
 @observer
 
@@ -27,6 +28,7 @@ class Goods extends Component {
         this.props.topic.getCommentList({ valueId: id, typeId: 0, page: 1, size: 1 })
         this.props.goods.getRelated({ id })
         this.props.goods.getCartSum()
+        lazyLoad(this.refs.load)
     }
     componentWillReceiveProps(nextProps){
         let id = nextProps.match.params.id;
@@ -92,7 +94,7 @@ class Goods extends Component {
     }
     render() {
         return (
-            <div className='App'>
+            <div className='App' ref='load'>
                 <div className='noTabPageContent'>
                     <div className='goodsPage'>
                         <div className='header'>
@@ -106,7 +108,8 @@ class Goods extends Component {
                                     {
                                         this.props.goods.goodsData && this.props.goods.goodsData.gallery.map(item => {
                                             return (<div className='swiper-slide' key={item.id}>
-                                                <img src={item.img_url} alt='' />
+                                                <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.img_url} alt='' />
+                                                {/* <img src={item.img_url} alt='' /> */}
                                             </div>)
                                         })
                                     }
@@ -149,7 +152,8 @@ class Goods extends Component {
                                             <div className='commentPicList'>
                                                 {
                                                     item.pic_list.length !== 0 ? item.pic_list.map(val => {
-                                                        return <img src={val.pic_url} key={val.comment_id} alt='' />
+                                                        return <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={val.pic_url} key={val.comment_id} alt='' />
+                                                        // return <img src={val.pic_url} key={val.comment_id} alt='' />
                                                     }) : null
                                                 }
                                             </div>
@@ -199,7 +203,8 @@ class Goods extends Component {
                                     this.props.goods.relatedData && this.props.goods.relatedData.map(item => {
                                         return (<div className='goodsItem' key={item.id} onClick={()=>{this.props.history.push({pathname:`/goods/${item.id}`})}}>
                                             <div className='goodsItemImg'>
-                                                <img src={item.list_pic_url} alt='' />
+                                                <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.list_pic_url} alt='' />
+                                                {/* <img src={item.list_pic_url} alt='' /> */}
                                             </div>
                                             <div className='goodsItemName'>{item.name}</div>
                                             <div className='goodsItemPrice'>￥{item.retail_price}元</div>

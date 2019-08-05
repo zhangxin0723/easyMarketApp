@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import './goods.scss'
 import { NavLink } from 'react-router-dom'
-
+//图片懒加载
+import lazyLoad from '../../../loadImg'
 @inject('search')
 @observer
 
@@ -16,6 +17,7 @@ class goodSearch extends Component {
     }
     componentDidMount() {
         this.props.search.getSearch()
+        lazyLoad(this.refs.load)
     }
     fuzzySearch(e) {
         let theEvent = window.event || e;
@@ -55,7 +57,7 @@ class goodSearch extends Component {
     render() {
         let { flag, show, active, ind ,order} = this.state;
         return (
-            <div className='App'>
+            <div className='App' ref='load'>
                 <div className='noTabPageContent'>
                     <div className='searchPage'>
                         <div className='searchFix'>
@@ -115,7 +117,8 @@ class goodSearch extends Component {
                                         this.props.search.filterData && this.props.search.filterData.data.map(item => {
                                             return (<NavLink className='goodsItem' key={item.id} to={`/goods/${item.id}`}>
                                                 <div className='goodsItemImg'>
-                                                    <img src={item.list_pic_url} alt=''/>
+                                                    <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.list_pic_url} alt='' />
+                                                    {/* <img src={item.list_pic_url} alt=''/> */}
                                                 </div>
                                                 <div className='goodsItemName'>{item.name}</div>
                                                 <div className='goodsItemPrice'>￥{item.retail_price}元</div>

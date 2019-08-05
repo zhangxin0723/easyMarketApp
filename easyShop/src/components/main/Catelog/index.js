@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import "./index.scss"
 import { NavLink } from 'react-router-dom'
-
+//图片懒加载
+import lazyLoad from '../../../loadImg'
 @inject('home', 'catelog')
 @observer
 
@@ -12,6 +13,7 @@ class Catelog extends Component {
         this.props.home.getNav({ id: 1005000 })
         this.props.catelog.getCatelog({ id: 1005000 })
         this.props.catelog.getCount()
+        lazyLoad(this.refs.load)
     }
     state = {
         ind: 0
@@ -22,7 +24,7 @@ class Catelog extends Component {
     }
     render() {
         return (
-            <div className='App'>
+            <div className='App' ref='load'>
                 <div className='tabPageContent'>
                     <div className='searchWrap' onClick={()=>{this.props.history.push('/goodSearch')}}>
                         <div className='searchInput'>
@@ -50,7 +52,8 @@ class Catelog extends Component {
                             {
                                 this.props.catelog.catelogData && this.props.catelog.catelogData.subCategoryList.map(item => {
                                     return (<NavLink className='subCategoryItem' key={item.id} to={`/categorys/${item.id}`}>
-                                        <img src={item.wap_banner_url} alt='' />
+                                         <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.wap_banner_url} alt='' />
+                                        {/* <img src={item.wap_banner_url} alt='' /> */}
                                         <div className='subCategoryItemName'>{item.name}</div>
                                     </NavLink>)
                                 })
