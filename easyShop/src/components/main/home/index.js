@@ -3,20 +3,15 @@ import { inject, observer } from 'mobx-react'
 import './index.scss'
 import 'swiper/dist/css/swiper.css'
 import Swiper from 'swiper/dist/js/swiper.js'
-import Lazyimg, { withLazyimg } from 'react-lazyimg-component';
 import { NavLink } from 'react-router-dom'
-//动画
-import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
-//???
-// import ProgressiveLazyImage , {Icon} from 'react-progressive-lazy-image'
-//!!!
-import ProgressiveImage from 'react-progressive-image'
+//图片懒加载
+import lazyLoad from '../../../loadImg'
 @inject('home')
 @observer
 class Home extends Component {
     componentDidMount() {
         this.props.home.getHomeData()
+        lazyLoad(this.refs.load)
     }
     componentDidUpdate(){
         new Swiper(this.refs.swiperDom, {
@@ -35,27 +30,15 @@ class Home extends Component {
         })
     }
     render() {
-        // 配置
-    const config = {
-        placeholder: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg',
-        js_effect: 'transition.shrinkIn', // 支持 velocity.js 动画效果
-        // appear:null,
-        threshold: 10000,
-    };
-    const Lazy = withLazyimg(config);
         return (
-            <div className="home">
+            <div className="home" ref='load'>
                 <div className="home_banner">
                     <div className='swiper-container' ref='swiperDom'>
                         <div className='swiper-wrapper'>
                             {
                                 this.props.home.homeData && this.props.home.homeData.banner.map(item => {
                                     return (<div className='swiper-slide' key={item.id}>
-                                         {/* <Lazy
-                                            className="lazy"
-                                            src={item.image_url}
-                                         /> */}
-                                        <img src={item.image_url} alt='' />
+                                        <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.image_url} alt='' />
                                     </div>)
                                 })
                             }
@@ -68,18 +51,7 @@ class Home extends Component {
                         this.props.home.homeData && this.props.home.homeData.channel.map(item => {
                             return (<NavLink to={`/categorys/${item.id}`} key={item.id}><dl>
                                 <dt>    
-                                <ProgressiveImage src={item.icon_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                    {src => <img src={src} alt="an image" />}
-                                </ProgressiveImage>
-                                {/* <ProgressiveLazyImage
-                                    src={item.icon_url}
-                                    placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg"
-                                /> */}
-                                    {/* <Lazy
-                                        className="lazy"
-                                        src={item.icon_url}
-                                    /> */}
-                                    {/* <img src={item.icon_url} alt=''  /> */}
+                                <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.icon_url} alt='' />
                                 </dt>
                                 <dd>{item.name}</dd>
                             </dl></NavLink>)
@@ -94,14 +66,7 @@ class Home extends Component {
                                 return (<NavLink className='brandItem' to={`/brandDetail/${item.id}`} key={item.id}>
                                     <div className='brandItemName'>{item.name}</div>
                                     <div className='brandItemMinPrice'>{item.floor_price}元起</div>
-                                    <ProgressiveImage src={item.new_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                        {src => <img src={src} alt="an image" />}
-                                    </ProgressiveImage>
-                                    {/* <Lazy
-                                        className="lazy"
-                                        src={item.new_pic_url}
-                                    /> */}
-                                        {/* <img src={item.new_pic_url}  alt=''  /> */}
+                                         <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.new_pic_url} alt='' />
                                 </NavLink>)
                             })
                         }
@@ -113,14 +78,7 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.newGoodsList.map(item => {
                                 return (<NavLink className='newGoodsItem'  to={`/goods/${item.id}`} key={item.id}>
-                                     <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                        {src => <img src={src} alt="an image" />}
-                                    </ProgressiveImage>
-                                     {/* <Lazy
-                                        className="lazy"
-                                        src={item.list_pic_url}
-                                    /> */}
-                                    {/* <img src={item.list_pic_url}  alt='' /> */}
+                                         <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.list_pic_url} alt='' />
                                     <div className='newGoodsName'>{item.name}</div>
                                     <div className='newGoodsPrice'>￥{item.retail_price}</div>
                                 </NavLink>)
@@ -134,14 +92,7 @@ class Home extends Component {
                         {
                             this.props.home.homeData && this.props.home.homeData.hotGoodsList.map(item => {
                                 return (<NavLink className='hotGoodsItem' key={item.id} to={`/goods/${item.id}`}>
-                                    <ProgressiveImage src={item.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                        {src => <img src={src} alt="an image" />}
-                                    </ProgressiveImage>
-                                     {/* <Lazy
-                                        className="lazy"
-                                        src={item.list_pic_url}
-                                    /> */}
-                                    {/* <img src={item.list_pic_url}  alt='' /> */}
+                                         <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.list_pic_url} alt='' />
                                     <div className='hotGoodsInfos'>
                                         <div className='hotGoodsName'>{item.name}</div>
                                         <div className='hotGoodsInfo'>{item.goods_brief}</div>
@@ -160,13 +111,7 @@ class Home extends Component {
                                 {
                                     this.props.home.homeData && this.props.home.homeData.topicList.map(item => {
                                         return (<div className='swiper-slide' key={item.id} onClick={()=>{this.props.history.push({pathname:`/topicDetail/?id=${item.id}`})}}>
-                                                  <ProgressiveImage src={item.item_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                                    {src => <img src={src} alt="an image" />}
-                                                </ProgressiveImage>
-                                             {/* <Lazy
-                                                className="lazy"
-                                                src={item.item_pic_url}
-                                            /> */}
+                                         <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.item_pic_url} alt='' />                                            
                                             {/* <img src={item.item_pic_url}  alt='' /> */}
                                             <div className='topGoodSubTitle'>
                                                 关爱他成长的每一个足迹
@@ -190,14 +135,7 @@ class Home extends Component {
                                         return (
                                             <NavLink tag='div' to={`/goods/${val.id}`} key={val.id}>
                                                 <div className='goodsItemImg'>
-                                                <ProgressiveImage src={val.list_pic_url} placeholder="https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg">
-                                                    {src => <img src={src} alt="an image" />}
-                                                </ProgressiveImage>
-                                                    {/* <Lazy
-                                                        className="lazy"
-                                                        src={val.list_pic_url}
-                                                    /> */}
-                                                    {/* <img src={val.list_pic_url}  alt='' /> */}
+                                                    <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={val.list_pic_url} alt='' />
                                                 </div>
                                                 <div className='goodsItemName'>{val.name}</div>
                                                 <div className='goodsItemPrice'>￥{val.retail_price}</div>

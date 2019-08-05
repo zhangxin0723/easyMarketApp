@@ -3,6 +3,8 @@ import { inject, observer } from 'mobx-react'
 import CartImg from './CartImg'
 import { Toast} from 'antd-mobile';
 import './index.scss'
+//图片懒加载
+import lazyLoad from '../../../loadImg'
 @inject('goods')
 @observer
 class Cart extends Component {
@@ -24,6 +26,7 @@ class Cart extends Component {
     }
     componentDidMount() {
         this.props.goods.getAddGoodsCart()
+        lazyLoad(this.refs.load)
     }
     //点击全选
     checkedToCheck() {
@@ -71,7 +74,7 @@ class Cart extends Component {
     }
     render() {
         return (
-            <div className='Cart_wrap'>
+            <div className='Cart_wrap' ref='load'>
                 <header className="headers">
                     <ul>
                         <li>
@@ -93,7 +96,8 @@ class Cart extends Component {
                         return <div key={item.id} className='main_box'>
                             <CartImg item={item}></CartImg>
                             <div className='main_goods_img'>
-                                <img src={item.list_pic_url} alt="" />
+                            <img src='https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/8bc5c8ca3da4043fc6c9dbfb32d5dc89_121_121.jpg' data-src={item.list_pic_url} alt='' />
+                                {/* <img src={item.list_pic_url} alt="" /> */}
                             </div>
                             {
                                 this.state.flag === false ? <React.Fragment>
